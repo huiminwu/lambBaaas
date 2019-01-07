@@ -3,6 +3,7 @@ import json, urllib, os
 from flask import Flask, render_template, flash, request, session, redirect, url_for
 
 from utils import db as lamb
+from random import choice
 
 DB_FILE = "data/lambBaaas.db"
 app = Flask(__name__)
@@ -84,5 +85,6 @@ def ret():
     return redirect(url_for('home'))
 
 if (__name__ == "__main__"):
-    app.debug = True
+    app.secret_key = os.urandom(32)
+    app.debug=True
     app.run()
