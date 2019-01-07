@@ -187,3 +187,16 @@ class DB_Manager:
         c.execute(command)
         id = c.fetchone()[0]
         return id
+    
+    # def saveWPM(self, userName, wpm, timestamp, difficulty):
+
+    # def saveWord(seld, userName, word, definition):
+
+    def getLeaderboard():
+        c = self.openDB()
+        command = "SELECT * FROM typing ORDER BY wpm".format(tableName)
+        c.execute(command)
+        return c.fetchall()
+
+   
+
