@@ -11,24 +11,24 @@
 
         {% if loggedin %}
         <h3> Welcome, {{user_name}}! </h3>
-        {% else %} 
-            <ul class="menu">
-                <form action="/auth" method="POST" class="center">
-                    <li><input type="text" placeholder="username" name="username_login" maxlength="25"></li>
-                    <!--<li><label for="password">Password: </label>-->
-                    <li><input type="password" placeholder="password" name="password_login" maxlength="25"></li>
-                    <li><center><input type="submit" name="action" class="button button-rounded-hover" value="Login"></center></li>
-                </form>
-                  </ul>
-                <br>
-                <ul class="menu">
-                <form action="/create_account_action" method="POST" class="center">
-                    <li><input type="text" placeholder="username" name="username_reg" maxlength="25" required></li>
-                    <li><input type="password" placeholder="password" name="password_reg" maxlength="25" required></li>
-                    <li><input type="password" placeholder="re-type password" name="password_check" maxlength="25" required></li>
-                    <li><center><input type="submit" name="action" class="button button-rounded-hover" value="Create Account"></center></li>
-                </form>
-                </ul>
+        {% else %}
+        <ul class="menu">
+            <form action="/auth" method="POST" class="center">
+                <li><input type="text" placeholder="username" name="username_login" maxlength="25"></li>
+                <!--<li><label for="password">Password: </label>-->
+                <li><input type="password" placeholder="password" name="password_login" maxlength="25"></li>
+                <li><center><input type="submit" name="action" class="button button-rounded-hover" value="Login"></center></li>
+            </form>
+        </ul>
+        <br>
+        <ul class="menu">
+        <form action="/create_account_action" method="POST" class="center">
+            <li><input type="text" placeholder="username" name="username_reg" maxlength="25" required></li>
+            <li><input type="password" placeholder="password" name="password_reg" maxlength="25" required></li>
+            <li><input type="password" placeholder="re-type password" name="password_check" maxlength="25" required></li>
+            <li><center><input type="submit" name="action" class="button button-rounded-hover" value="Create Account"></center></li>
+        </form>
+        </ul>
         {% endif %}
     </div>
 </div>
@@ -41,5 +41,5 @@
     </div>
 </div>
 {% endif %}
-{% endblock %}
 </center>
+{% endblock %}

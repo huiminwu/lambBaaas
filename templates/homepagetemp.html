@@ -1,0 +1,76 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Foundation | Welcome</title>
+<link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+</head>
+<body>
+
+<br>
+
+<div class="row">
+  <div class="medium-6 large-5 columns">
+    <h1>GitGud</h1>
+    <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in.</p>
+  </div>
+  <div class="medium-6 large-5 columns">
+    <div class="grid-margin-x grid-padding-y">
+        <div class="cell home medium-6">
+            {% set msgs = get_flashed_messages() %}
+                {% for msg in msgs %}
+                <p>Msg: {{ msg }}</p>
+                {% endfor %}
+
+            {% if loggedin %}
+            <h3> Welcome, {{user_name}}! </h3>
+            {% else %}
+            <ul class="menu">
+                <form action="/auth" method="POST" class="center">
+                    <li><input type="text" placeholder="username" name="username_login" maxlength="25"></li>
+                    <!--<li><label for="password">Password: </label>-->
+                    <li><input type="password" placeholder="password" name="password_login" maxlength="25"></li>
+                    <li><center><input type="submit" name="action" class="button button-rounded-hover" value="Login"></center></li>
+                </form>
+            </ul>
+            <br>
+            <ul class="menu">
+            <form action="/create_account_action" method="POST" class="center">
+                <li><input type="text" placeholder="username" name="username_reg" maxlength="25" required></li>
+                <li><input type="password" placeholder="password" name="password_reg" maxlength="25" required></li>
+                <li><input type="password" placeholder="re-type password" name="password_check" maxlength="25" required></li>
+                <li><center><input type="submit" name="action" class="button button-rounded-hover" value="Create Account"></center></li>
+            </form>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    {% if loggedin %}
+    <div class="grid-margin-x grid-padding-y">
+        <div class="cell home medium-6">
+            <form action="/logout">
+              <button class="button button-rounded-hover">Logout</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+<div class="row column">
+<hr>
+<ul class="menu">
+<li>Yeti Store</li>
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Contact</a></li>
+<li class="float-right">Copyright 2016</li>
+</ul>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+<script>
+      $(document).foundation();
+    </script>
+</body>
+</html>
