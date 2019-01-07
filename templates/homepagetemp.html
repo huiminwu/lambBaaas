@@ -1,16 +1,12 @@
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Foundation | Welcome</title>
-<link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-</head>
-<body>
+{% extends "template.html" %}
+{% block title %} Welcome {% endblock %}
+{% block body %}
 
 <br>
 
 <div class="row">
+  <center>
+  <div class="height-centered">
   <div class="medium-6 large-5 columns">
     <h1>GitGud</h1>
     <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in.</p>
@@ -19,9 +15,9 @@
     <div class="grid-margin-x grid-padding-y">
         <div class="cell home medium-6">
             {% set msgs = get_flashed_messages() %}
-                {% for msg in msgs %}
-                <p>Msg: {{ msg }}</p>
-                {% endfor %}
+            {% for msg in msgs %}
+            <p>Msg: {{ msg }}</p>
+            {% endfor %}
 
             {% if loggedin %}
             <h3> Welcome, {{user_name}}! </h3>
@@ -56,21 +52,7 @@
     </div>
     {% endif %}
   </div>
+  </div>
+  </center>
 </div>
-<div class="row column">
-<hr>
-<ul class="menu">
-<li>Yeti Store</li>
-<li><a href="#">Home</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Contact</a></li>
-<li class="float-right">Copyright 2016</li>
-</ul>
-</div>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-<script>
-      $(document).foundation();
-    </script>
-</body>
-</html>
+{% endblock %}

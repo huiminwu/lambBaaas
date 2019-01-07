@@ -4,9 +4,24 @@
     <link rel="stylesheet" href="static/css/foundation.css">
     <link rel="stylesheet" type="text/css" href="static/pumpkin.css">
     <link rel="stylesheet" type="text/css" href="static/flip.css">
+    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <style>
+    .copyright-height {
+      height: 93%;
+    }
+    .height-centered {
+      margin-bottom: auto;
+      margin-top: auto;
+      float: none !important;
+    }
+    </style>
   </head>
   <body>
-    {% block body %}You should not be here{% endblock %}
+    <div class="copyright-height">
+      {% block body %}You should not be here{% endblock %}
+    </div>
     <footer style="padding-left: 0.9375rem;"><br>Copyright &copy; 2019 LambBaas</footer>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
   </body>
 </html>

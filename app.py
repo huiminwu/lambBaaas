@@ -25,10 +25,10 @@ def setUser(userName):
 def home():
     if user in session:
         data = lamb.DB_Manager(DB_FILE)
-        return render_template('homepage.html', user_name = user, loggedin = "True")
+        return render_template('homepagetemp.html', user_name = user, loggedin = "True")
 
 
-    return render_template("homepage.html")
+    return render_template("homepagetemp.html")
 
 @app.route('/auth', methods=['POST'])
 def auth():
