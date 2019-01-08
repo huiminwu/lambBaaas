@@ -134,16 +134,6 @@ class DB_Manager:
         selectedVal = c.fetchall()
         return dict(selectedVal)
 
-    def get_user_ids(self, storyTitle):
-        '''
-        RETURNS SET OF user_ids CONTRIBUTED TO storyTitle
-        '''
-        c = self.openDB()
-        command = "SELECT user_id FROM '{0}'".format(storyTitle)
-        c.execute(command)
-        ids = set(x[0] for x in c.fetchall())
-        return ids
-
     def registerUser(self, userName, password):
         '''
         ADDS user TO DATABASE
@@ -188,15 +178,33 @@ class DB_Manager:
         id = c.fetchone()[0]
         return id
     
-    # def saveWPM(self, userName, wpm, timestamp, difficulty):
+    def saveWPM(self, userName, wpm, timestamp, difficulty):
+        c = self.openDB()
+        command = "DELETE FROM typing WHERE user_name = '{0}'".format(userName)
+        c.execute(command)
+        command = "INSERT IN typing VALUES('{0}', {1}, {2}, {3})".format(userName, wpm, timestamp, difficulty)
+        c.execute(command)
+        return True
 
-    # def saveWord(seld, userName, word, definition):
+    def saveWord(self, userName, word, definition):
+        c = self.openDB()
+        command = "INSERT IN vocab VALUES('{0}', '{1}', '{2}')".format(userName, word, definition)
+        c.execute(command)
+        return True
 
     def getLeaderboard():
         c = self.openDB()
-        command = "SELECT * FROM typing ORDER BY wpm".format(tableName)
+        command = "SELECT * FROM typing ORDER BY wpm"
         c.execute(command)
         return c.fetchall()
 
-   
+   def getVocabWords(): 
+        c = self.openDB()
+        dict = {'words':[], 'definitions':[]}
+        command_tupe=(user,)
+        c.execute("SELECT word FROM vocab WHERE username=?", command_tuple)       
+        dict['words'] = c.fetchall()
+        c.execute("SELECT definition FROM vocab WHERE username=?", command_tuple)
+        dict['definitions'] = c.fetchall()
+        return dict
 
