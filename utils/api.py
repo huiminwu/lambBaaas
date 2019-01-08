@@ -22,3 +22,92 @@ def access_info(URL_STUB, API_KEY = None, **kwargs):
     response = response.read()
     info = json.loads(response)
     return info
+
+def get_bored_activity():
+    '''
+    Fetches an activity and returns that activity.
+    Returns a dict with:
+    - activity: the activity
+    '''
+    data = access_info('https://www.boredapi.com/api/activity')
+    result = {}
+    result['activity'] = data['activity']
+    return result
+
+def get_quote():
+    '''
+    Returns a random quote and the author who said/wrote it.
+    Returns a dict with:
+    - quote: the quote
+    - author: the author
+    '''
+    data = access_info('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=')
+    result = {}
+
+    # strip off HTML and replace special quotes with reg quotes
+    content = data[0]['content']
+    content = content.replace('&#8217;','\'')
+    content = content.strip('\n')
+    content = content.strip('<p>')
+    content = content.strip('</p>')
+    content = content.strip()
+    print(content)
+
+    result['author'] = data[0]['title']
+    result['quote'] = content
+    return result
+
+def get_word(query):
+    '''
+    Finds 100 possible words using the query parameter.
+    Returns a dict with:
+    - words: a list of all possible words
+    '''
+    query = query.strip()
+    URL = 'https://api.datamuse.com/sug?max=100&s={}'.format(query)
+    data = access_info(URL)
+
+    result = {}
+    result['words'] = []
+    # distill down to necessary words
+    for entry in data:
+        result['words'].append(entry['word'])
+
+    return result
+
+def get_definition(query):
+    '''
+    Finds all possible defintions using the query parameter.
+    Returns a dict with:
+    - word: the query
+    - definitions: a list of all possible definitions
+    '''
+    query = query.strip()
+    file = open('oxford.txt', 'r').read()
+    apikey = file.strip()
+    if apikey == '':
+        return 'No API key found'
+
+    # add headers
+    headers = {}
+    headers['app_id'] = '1a82131d'
+    headers['app_key'] = apikey
+
+    # access info
+    URL = '	https://od-api.oxforddictionaries.com/api/v1/entries/en/{}'.format(query)
+    data = access_info(URL, **headers)
+
+    # distill down to necessary words
+    result = {}
+    result['word'] = query
+    result['definitions'] = []
+    for entry in data['results'][0]['lexicalEntries'][0]['entries'][0]['senses']:
+        result['definitions'].append(entry['definitions'][0])
+        if 'subsenses' in entry.keys():
+            result['definitions'].append(entry['subsenses'][0]['definitions'][0])
+
+    return result
+
+if __name__ == '__main__':
+    # print(get_word('    ye'))
+    print(get_definition('run'))

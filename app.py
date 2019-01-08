@@ -3,6 +3,7 @@ import json, urllib, os
 from flask import Flask, render_template, flash, request, session, redirect, url_for
 
 from utils import db as lamb
+from utils import api
 from random import choice
 
 DB_FILE = "data/lambBaaas.db"
@@ -23,6 +24,9 @@ def setUser(userName):
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
+    '''
+    Landing page.
+    '''
     if user in session:
         data = lamb.DB_Manager(DB_FILE)
         return render_template('homepage.html', user_name = user, loggedin = "True")
@@ -32,6 +36,9 @@ def home():
 
 @app.route('/auth', methods=['POST'])
 def auth():
+    '''
+    Authentication route. Reroutes to home route when authenticated.
+    '''
     # instantiates DB_Manager with path to DB_FILE
     data = lamb.DB_Manager(DB_FILE)
     # LOGGING IN
@@ -53,6 +60,9 @@ def auth():
 
 @app.route('/create_account_action', methods=["POST"])
 def create_account_action():
+    '''
+    Creates account. Reroutes to home when successful.
+    '''
     data = lamb.DB_Manager(DB_FILE)
     username, password, password2 = request.form["username_reg"], request.form['password_reg'], request.form['password_check']
     if len(username.strip()) != 0 and not data.findUser(username):
@@ -76,13 +86,24 @@ def create_account_action():
 
 @app.route('/logout')
 def logout():
+    '''
+    Logs the user out.
+    '''
     session.pop(user, None)
     setUser(None)
     return redirect(url_for('home'))
 
-@app.route('/return')
-def ret():
-    return redirect(url_for('home'))
+@app.route('/activity')
+def bored_activity():
+    '''
+    Boilerplate for bored API.
+    '''
+    activity = api.get_bored_activity()['activity']
+    return activity
+
+# @app.route('/return')
+# def ret():
+#     return redirect(url_for('home'))
 
 if (__name__ == "__main__"):
     app.secret_key = os.urandom(32)
