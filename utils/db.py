@@ -177,7 +177,7 @@ class DB_Manager:
         c.execute(command)
         id = c.fetchone()[0]
         return id
-    
+
     def saveWPM(self, userName, wpm, timestamp, difficulty):
         c = self.openDB()
         command = "DELETE FROM typing WHERE user_name = '{0}'".format(userName)
@@ -198,11 +198,11 @@ class DB_Manager:
         c.execute(command)
         return c.fetchall()
 
-   def getVocabWords(): 
+    def getVocabWords():
         c = self.openDB()
         dict = {'words':[], 'definitions':[]}
         command_tupe=(user,)
-        c.execute("SELECT word FROM vocab WHERE username=?", command_tuple)       
+        c.execute("SELECT word FROM vocab WHERE username=?", command_tuple)
         dict['words'] = c.fetchall()
         c.execute("SELECT definition FROM vocab WHERE username=?", command_tuple)
         dict['definitions'] = c.fetchall()
