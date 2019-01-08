@@ -94,7 +94,7 @@ def get_definition(query):
     headers['app_key'] = apikey
 
     # access info
-    URL = '	https://od-api.oxforddictionaries.com/api/v1/entries/en/{}'.format(query)
+    URL = 'https://od-api.oxforddictionaries.com/api/v1/entries/en/{}'.format(query)
     data = access_info(URL, **headers)
 
     # distill down to necessary words
