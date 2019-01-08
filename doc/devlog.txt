@@ -13,8 +13,13 @@ pd8
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+huiminW -- 2019-01-08 14:55
+--------------------------------------------------------------
+Specified what the js file will be used for as well as
+connections between python files
+--------------------------------------------------------------
 
-raunakC, antonD, huiminW -- 2019-01-08 2:00
+raunakC, antonD, huiminW -- 2019-01-08 14:00
 --------------------------------------------------------------
 Updated design.pdf with front end framework and clarified how
 our words db will be updated. Also updated the apis we're using
