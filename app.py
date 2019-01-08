@@ -3,7 +3,7 @@ import json, urllib, os
 from flask import Flask, render_template, flash, request, session, redirect, url_for
 
 from utils import db as lamb
-from utils import api
+#from utils import api
 from random import choice
 
 DB_FILE = "data/lambBaaas.db"

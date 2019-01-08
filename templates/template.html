@@ -6,17 +6,36 @@
     <link rel="stylesheet" type="text/css" href="static/flip.css">
     <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
     <style>
-    .height-centered {
-      padding-top: 11%;
-      padding-bottom: 11%;
+    body {
+        background: white;
+    }
+    .contents {
+        border-radius: 1em;
+        padding: 1em;
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+    }
+    h1 {
+        font-size: 5em;
+    }
+    p {
+        font-size: 120%;
+    }
+    #loginBox {
+        background: black;
+        border-radius: 1em;
+        padding: 1em;
     }
     </style>
   </head>
   <body>
-    <div class="height-centered">
+    <div class="contents">
       {% block body %}You should not be here{% endblock %}
     </div>
-    <footer style="padding-left: 0.9375rem;"><br>Copyright &copy; 2019 LambBaas</footer>
+    <footer style="padding-top: 47%; padding-left: 0.9375rem;"><br>Copyright &copy; 2019 LambBaas</footer>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
   </body>
