@@ -1,0 +1,29 @@
+{% extends "template.html" %}
+{% block title %} Welcome {% endblock %}
+{% block body %}
+
+<div class="top-bar">
+  <div class="row">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+	<li class="menu-text">GitGud</li>
+	<li><a href="activities">Activities</a></li>
+	<li><a href="typing">Typing</a></li>
+	<li><a href="vocab">Vocabulary</a></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+	<li><input type="search" placeholder="Search"></li>
+	<li><button type="button" class="button">Search</button></li>
+        <li><form action="/logout">
+          <button class="button button-rounded-hover">Logout</button>
+        </form></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<br>
+
+{% endblock %}

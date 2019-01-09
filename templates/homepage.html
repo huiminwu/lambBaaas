@@ -1,59 +1,60 @@
 {% extends "template.html" %}
 {% block title %} Welcome {% endblock %}
 {% block body %}
+<div class="landing">
+  <br>
 
-<br>
-
-<div class="row">
-  <center>
-    <div class="medium-6 large-5 columns">
-      <h1>GitGud</h1>
-      <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in.</p>
-    </div>
-
-    <div class="medium-6 large-5 columns">
-      <div id="loginBox">
-        <div class="grid-margin-x grid-padding-y">
-            <div class="cell home medium-6">
-                {% set msgs = get_flashed_messages() %}
-                {% for msg in msgs %}
-                <p style="color: white">Msg: {{ msg }}</p>
-                {% endfor %}
-
-                {% if loggedin %}
-                <h3 style="color: white"> Welcome, {{user_name}}! </h3>
-                {% else %}
-                <ul class="menu">
-                    <form action="/auth" method="POST" class="center">
-                        <li><input type="text" placeholder="username" name="username_login" maxlength="25"></li>
-                        <!--<li><label for="password">Password: </label>-->
-                        <li><input type="password" placeholder="password" name="password_login" maxlength="25"></li>
-                        <li><input type="submit" name="action" class="button button-rounded-hover" value="Login"></li>
-                    </form>
-                </ul>
-                <br>
-                <ul class="menu">
-                <form action="/create_account_action" method="POST" class="center">
-                    <li><input type="text" placeholder="username" name="username_reg" maxlength="25" required></li>
-                    <li><input type="password" placeholder="password" name="password_reg" maxlength="25" required></li>
-                    <li><input type="password" placeholder="re-type password" name="password_check" maxlength="25" required></li>
-                    <li><input type="submit" name="action" class="button button-rounded-hover" value="Create Account"></li>
-                </form>
-                </ul>
-                {% endif %}
-            </div>
-        </div>
-        {% if loggedin %}
-        <div class="grid-margin-x grid-padding-y">
-            <div class="cell home medium-6">
-                <form action="/logout">
-                  <button class="button button-rounded-hover">Logout</button>
-                </form>
-            </div>
-        </div>
-        {% endif %}
+  <div class="row">
+    <center>
+      <div class="medium-6 large-5 columns">
+	<h1>GitGud</h1>
+	<p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in.</p>
       </div>
-    </div>
-  </center>
+
+      <div class="medium-6 large-5 columns">
+	<div id="loginBox">
+          <div class="grid-margin-x grid-padding-y">
+            <div class="cell home medium-6">
+              {% set msgs = get_flashed_messages() %}
+              {% for msg in msgs %}
+              <p style="color: white">Msg: {{ msg }}</p>
+              {% endfor %}
+
+              {% if loggedin %}
+              <h3 style="color: white"> Welcome, {{user_name}}! </h3>
+              {% else %}
+              <ul class="menu">
+                <form action="/auth" method="POST" class="center">
+                  <li><input type="text" placeholder="username" name="username_login" maxlength="25"></li>
+                  <!--<li><label for="password">Password: </label>-->
+                  <li><input type="password" placeholder="password" name="password_login" maxlength="25"></li>
+                  <li><input type="submit" name="action" class="button button-rounded-hover" value="Login"></li>
+                </form>
+              </ul>
+              <br>
+              <ul class="menu">
+                <form action="/create_account_action" method="POST" class="center">
+                  <li><input type="text" placeholder="username" name="username_reg" maxlength="25" required></li>
+                  <li><input type="password" placeholder="password" name="password_reg" maxlength="25" required></li>
+                  <li><input type="password" placeholder="re-type password" name="password_check" maxlength="25" required></li>
+                  <li><input type="submit" name="action" class="button button-rounded-hover" value="Create Account"></li>
+                </form>
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+          {% if loggedin %}
+          <div class="grid-margin-x grid-padding-y">
+            <div class="cell home medium-6">
+              <form action="/logout">
+                <button class="button button-rounded-hover">Logout</button>
+              </form>
+            </div>
+          </div>
+          {% endif %}
+	</div>
+      </div>
+    </center>
+  </div>
 </div>
 {% endblock %}

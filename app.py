@@ -3,7 +3,7 @@ import json, urllib, os
 from flask import Flask, render_template, flash, request, session, redirect, url_for
 
 from utils import db as lamb
-from utils import api
+#from utils import api
 from random import choice
 
 DB_FILE = "data/lambBaaas.db"
@@ -48,7 +48,7 @@ def auth():
             session[username] = password
             setUser(username)
             data.save()
-            return redirect(url_for('home'))
+            return redirect(url_for('main'))
         # user was found in DB but password did not match
         elif data.findUser(username):
             flash('Incorrect password!')
@@ -92,6 +92,18 @@ def logout():
     session.pop(user, None)
     setUser(None)
     return redirect(url_for('home'))
+
+@app.route('/main', methods=['POST', 'GET'])
+def main():
+    '''
+    Activities page.
+    '''
+    if user in session:
+        data = lamb.DB_Manager(DB_FILE)
+        return render_template('activity.html', user_name = user, loggedin = "True")
+
+
+    return render_template("homepage.html")
 
 @app.route('/activity')
 def bored_activity():
@@ -143,6 +155,27 @@ def definition(oldQuery, word):
 # @app.route('/return')
 # def ret():
 #     return redirect(url_for('home'))
+
+@app.route('/activities', methods=['POST', 'GET'])
+def activities():
+    '''
+    Activities page.
+    '''
+    return render_template('activity.html', user_name = user, loggedin = "True")
+
+@app.route('/typing', methods=['POST', 'GET'])
+def typing():
+    '''
+    Typing page.
+    '''
+    return render_template('typing.html', user_name = user, loggedin = "True")
+
+@app.route('/vocab', methods=['POST', 'GET'])
+def vocab():
+    '''
+    Vocabulary page.
+    '''
+    return render_template('vocab.html', user_name = user, loggedin = "True")
 
 if (__name__ == "__main__"):
     app.secret_key = os.urandom(32)
