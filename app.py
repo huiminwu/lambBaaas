@@ -112,7 +112,8 @@ def bored_activity():
     Boilerplate for bored API.
     '''
     activity = api.get_bored_activity()['activity']
-    return render_template("activity.html", act = activity);
+    category = api.get_bored_activity()['type']
+    return render_template("activity.html", act = activity, cat = category);
 
 @app.route('/wordSearch')
 def word_activity():

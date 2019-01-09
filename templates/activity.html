@@ -1,20 +1,36 @@
 {% extends "mainpage.html" %}
 {% block title %} Activities {% endblock %}
 {% block content %}
-
-<p>Activity time yeeeeeeeeeeeee</p>
-
-<div class="flip-card card" ontouchstart="this.classList.toggle('hover');">
-  <div class="flip-card-inner">
-    <div class="flip-card-inner-front">
-      <span>Touch this!</span>
+<center>
+<div class="grid-x grid-padding-y grid-margin-x">
+    <div class="cell medium-6">
+            <div class="flip-card card" ontouchstart="this.classList.toggle('hover');">
+            <div class="flip-card-inner">
+            <div class="flip-card-inner-front">
+              <span>Activity</span>
+            </div>
+            <div class="flip-card-inner-back">
+              <p class="flip-card-inner-back-text">
+                {{act}}
+              </p>
+            </div>
+            </div>
+            </div>
     </div>
-    <div class="flip-card-inner-back">
-      <p class="flip-card-inner-back-text">
-        <br> {{act}} <br>
-      </p>
+    <div class="cell medium-6">
+            <div class="flip-card card" ontouchstart="this.classList.toggle('hover');">
+            <div class="flip-card-inner">
+            <div class="flip-card-inner-front">
+                <span>Category</span>
+            </div>
+            <div class="flip-card-inner-back">
+              <p class="flip-card-inner-back-text">
+                {{cat}}
+              </p>
+            </div>
+            </div>
+            </div>
     </div>
-  </div>
 </div>
-
+</center>
 {% endblock %}

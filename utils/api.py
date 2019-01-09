@@ -29,7 +29,6 @@ def get_bored_activity():
     Returns a dict with:
     - activity: the activity
     '''
-    print("GETTING ACTIVITY")
     data = access_info('https://www.boredapi.com/api/activity')
     result = {}
     result['activity'] = data['activity']
