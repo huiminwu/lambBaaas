@@ -27,14 +27,14 @@ def home():
     '''
     Landing page.
     '''
-    return render_template('homepage.html', loggingin = "True")
+    return render_template('homepage.html', loggingin = True)
 
 @app.route('/wanna_register', methods=['POST', 'GET'])
 def wanna_register():
     '''
     Landing page.
     '''
-    return render_template('homepage.html', loggingin = "False")
+    return render_template('homepage.html', loggingin = False)
 
 @app.route('/auth', methods=['POST'])
 def auth():

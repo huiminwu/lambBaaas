@@ -3,6 +3,18 @@
 {% block content %}
 
 <p>Activity time yeeeeeeeeeeeee</p>
-{{act}}
+
+<div class="flip-card card" ontouchstart="this.classList.toggle('hover');">
+  <div class="flip-card-inner">
+    <div class="flip-card-inner-front">
+      <span>Touch this!</span>
+    </div>
+    <div class="flip-card-inner-back">
+      <p class="flip-card-inner-back-text">
+        <br> {{act}} <br>
+      </p>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

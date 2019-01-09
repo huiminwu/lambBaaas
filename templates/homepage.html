@@ -27,8 +27,12 @@
                     <!--<li><label for="password">Password: </label>-->
                     <li><input type="password" placeholder="password" name="password_login" maxlength="25"></li>
                     <li><input type="submit" name="action" class="button button-rounded-hover" value="Login"></li>
-                    <br>
-                    <li><a href="wanna_register">Register</a></li>
+                  </form>
+                </ul>
+                <br>
+                <ul class="menu">
+                  <form action="/wanna_register" method="POST" class="center">
+                    <li><input type="submit" name="action" class="hollow button" value="Register"></li>
                   </form>
                 </ul>
               {% else %}
@@ -38,6 +42,12 @@
                     <li><input type="password" placeholder="password" name="password_reg" maxlength="25" required></li>
                     <li><input type="password" placeholder="re-type password" name="password_check" maxlength="25" required></li>
                     <li><input type="submit" name="action" class="button button-rounded-hover" value="Create Account"></li>
+                  </form>
+                </ul>
+                <br>
+                <ul class="menu">
+                  <form action="/" method="POST" class="center">
+                    <li><input type="submit" name="action" class="hollow button" value="Back to Login"></li>
                   </form>
                 </ul>
               {% endif %}
