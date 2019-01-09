@@ -108,6 +108,9 @@ def get_definition(query):
     result['word'] = query
     result['definitions'] = []
     for entry in data['results'][0]['lexicalEntries'][0]['entries'][0]['senses']:
+        # false positive handling
+        if 'definitions' not in entry.keys():
+            return {}
         result['definitions'].append(entry['definitions'][0])
         if 'subsenses' in entry.keys():
             result['definitions'].append(entry['subsenses'][0]['definitions'][0])
@@ -116,4 +119,4 @@ def get_definition(query):
 
 if __name__ == '__main__':
     # print(get_word('    ye'))
-    print(get_definition('new'))
+    print(get_definition('flexagon'))

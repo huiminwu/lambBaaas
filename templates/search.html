@@ -1,4 +1,6 @@
 {% if words %}
+  Here are all possible words: <br>
+  <a href="{{url_for('word_activity')}}">Or...search for something else</a>
   <ul>
     {% for word in words %}
     <li>
