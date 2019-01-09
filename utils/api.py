@@ -61,6 +61,7 @@ def get_word(query):
     '''
     Finds 100 possible words using the query parameter.
     Returns a dict with:
+    - query: the query
     - words: a list of all possible words
     '''
     query = query.strip()
@@ -68,6 +69,7 @@ def get_word(query):
     data = access_info(URL)
 
     result = {}
+    result['query'] = query
     result['words'] = []
     # distill down to necessary words
     for entry in data:
@@ -82,11 +84,12 @@ def get_definition(query):
     - word: the query
     - definitions: a list of all possible definitions
     '''
-    query = query.strip()
-    file = open('oxford.txt', 'r').read()
-    apikey = file.strip()
-    if apikey == '':
-        return 'No API key found'
+    # query = query.strip()
+    # file = open('../oxford.txt', 'r').read()
+    # apikey = file.strip()
+    apikey = '93a46d0f3ab03a523095b1f1bfe1f1ee' # sub for now b/c path is inoperative
+    # if apikey == '':
+    #     return 'No API key found'
 
     # add headers
     headers = {}
@@ -95,7 +98,10 @@ def get_definition(query):
 
     # access info
     URL = 'https://od-api.oxforddictionaries.com/api/v1/entries/en/{}'.format(query)
-    data = access_info(URL, **headers)
+    try:
+        data = access_info(URL, **headers)
+    except:
+        return {}
 
     # distill down to necessary words
     result = {}
@@ -110,4 +116,4 @@ def get_definition(query):
 
 if __name__ == '__main__':
     # print(get_word('    ye'))
-    print(get_definition('run'))
+    print(get_definition('new'))

@@ -1,0 +1,15 @@
+{% if words %}
+  <ul>
+    {% for word in words %}
+    <li>
+      <a href="/def/{{query}}/{{word}}">{{ word }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  Type in a word, any word: <br>
+  <form class="" action="/wordResult" method="get">
+    <input type="text" name="query" value="">
+    <button type="submit" name="button">Submit</button>
+  </form>
+{% endif %}

@@ -3,7 +3,7 @@ import json, urllib, os
 from flask import Flask, render_template, flash, request, session, redirect, url_for
 
 from utils import db as lamb
-#from utils import api
+from utils import api
 from random import choice
 
 DB_FILE = "data/lambBaaas.db"
@@ -100,6 +100,45 @@ def bored_activity():
     '''
     activity = api.get_bored_activity()['activity']
     return activity
+
+@app.route('/wordSearch')
+def word_activity():
+    '''
+    Displays a search query for words.
+    '''
+    return render_template("search.html")
+
+@app.route('/wordResult', defaults={'word': None})
+@app.route('/wordResult/<word>')
+def search_results(word):
+    '''
+    Returns all entries for the word.
+    Has an optional param for returning from the defintions endpoint.
+    '''
+    if word:
+        query = word
+    else:
+        query = request.args['query']
+        # checking for common mistakes
+        query = query.strip()
+        if query == '':
+            flash('Input something valid!')
+            return render_template("search.html")
+
+    result = api.get_word(query)
+    return render_template('search.html', **result)
+
+@app.route('/def/<oldQuery>/<word>')
+def definition(oldQuery, word):
+    '''
+    returns the definition of the selected word. Employs this through dynamic routing.
+    if no defintions exist, user is returned to the previous page.
+    '''
+    result = api.get_definition(word)
+    if result == {}:
+        flash('No definitions found!')
+        return redirect(url_for('search_results', word = oldQuery))
+    return render_template('definitions.html', **result)
 
 # @app.route('/return')
 # def ret():
