@@ -27,12 +27,14 @@ def home():
     '''
     Landing page.
     '''
-    if user in session:
-        data = lamb.DB_Manager(DB_FILE)
-        return render_template('homepage.html', user_name = user, loggedin = "True")
+    return render_template('homepage.html', loggingin = "True")
 
-
-    return render_template("homepage.html")
+@app.route('/wanna_register', methods=['POST', 'GET'])
+def wanna_register():
+    '''
+    Landing page.
+    '''
+    return render_template('homepage.html', loggingin = "False")
 
 @app.route('/auth', methods=['POST'])
 def auth():

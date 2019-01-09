@@ -1,6 +1,11 @@
 {% extends "mainpage.html" %}
-{% block title %} Activities {% endblock %}
+{% block title %} Typing {% endblock %}
 {% block content %}
+
+{% set msgs = get_flashed_messages() %}
+{% for msg in msgs %}
+<p style="color: black">Msg: {{ msg }}</p>
+{% endfor %}
 
 <p>Typing time yeeeeeeeeeeeee</p>
 
