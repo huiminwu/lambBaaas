@@ -122,7 +122,7 @@ class DB_Manager:
         '''
         CREATES TABLE OF VOCAB WORDS AND
         '''
-        self.tableCreator3('vocab', 'user_name text', 'word text')
+        self.tableCreator2('vocab', 'user_name text', 'word text')
         return True
 
     def getUsers(self):

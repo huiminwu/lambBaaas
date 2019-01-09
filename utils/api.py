@@ -33,6 +33,7 @@ def get_bored_activity():
     data = access_info('https://www.boredapi.com/api/activity')
     result = {}
     result['activity'] = data['activity']
+    result['type'] = data['type']
     return result
 
 def get_quote():
