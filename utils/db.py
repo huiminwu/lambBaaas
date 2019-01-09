@@ -120,10 +120,11 @@ class DB_Manager:
 
     def createVocab(self):
         '''
-        CREATES TABLE OF VOCAB WORDS AND DEFINITIONS
+        CREATES TABLE OF VOCAB WORDS AND
         '''
-        self.tableCreator3('vocab', 'user_name text', 'word text', 'definition text')
+        self.tableCreator3('vocab', 'user_name text', 'word text')
         return True
+
     def getUsers(self):
         '''
         RETURNS A DICTIONARY CONTAINING ALL CURRENT users AND CORRESPONDING PASSWORDS'
@@ -189,12 +190,12 @@ class DB_Manager:
         c.execute(command)
         return True
 
-    def saveWord(self, userName, word, definition):
+    def saveWord(self, userName, word):
         '''
-        SAVES word and definition each user wants to save
+        SAVES word each user wants to save
         '''
         c = self.openDB()
-        command = "INSERT IN vocab VALUES('{0}', '{1}', '{2}')".format(userName, word, definition)
+        command = "INSERT IN vocab VALUES('{0}', '{1}')".format(userName, word)
         c.execute(command)
         return True
 
@@ -212,11 +213,9 @@ class DB_Manager:
         RETURNS all of user's vocab's words
         '''
         c = self.openDB()
-        dict = {'words':[], 'definitions':[]}
+        dict = {'words':[]}
         command_tupe=(user,)
         c.execute("SELECT word FROM vocab WHERE username=?", command_tuple)
         dict['words'] = c.fetchall()
-        c.execute("SELECT definition FROM vocab WHERE username=?", command_tuple)
-        dict['definitions'] = c.fetchall()
         return dict
 
