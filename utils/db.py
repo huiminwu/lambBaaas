@@ -179,6 +179,9 @@ class DB_Manager:
         return id
 
     def saveWPM(self, userName, wpm, timestamp, difficulty):
+        '''
+        SAVES wpm, timestamp, and difficulty for username
+        '''
         c = self.openDB()
         command = "DELETE FROM typing WHERE user_name = '{0}'".format(userName)
         c.execute(command)
@@ -187,18 +190,27 @@ class DB_Manager:
         return True
 
     def saveWord(self, userName, word, definition):
+        '''
+        SAVES word and definition each user wants to save
+        '''
         c = self.openDB()
         command = "INSERT IN vocab VALUES('{0}', '{1}', '{2}')".format(userName, word, definition)
         c.execute(command)
         return True
 
     def getLeaderboard():
+        '''
+        RETURNS leaderboard of users
+        '''
         c = self.openDB()
         command = "SELECT * FROM typing ORDER BY wpm"
         c.execute(command)
         return c.fetchall()
 
     def getVocabWords():
+        '''
+        RETURNS all of user's vocab's words
+        '''
         c = self.openDB()
         dict = {'words':[], 'definitions':[]}
         command_tupe=(user,)

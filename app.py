@@ -3,7 +3,7 @@ import json, urllib, os
 from flask import Flask, render_template, flash, request, session, redirect, url_for
 
 from utils import db as lamb
-#from utils import api
+from utils import api
 from random import choice
 
 DB_FILE = "data/lambBaaas.db"
@@ -100,8 +100,7 @@ def main():
     '''
     if user in session:
         data = lamb.DB_Manager(DB_FILE)
-        return render_template('activity.html', user_name = user, loggedin = "True")
-
+        return redirect(url_for('bored_activity'))
 
     return render_template("homepage.html")
 
@@ -111,7 +110,7 @@ def bored_activity():
     Boilerplate for bored API.
     '''
     activity = api.get_bored_activity()['activity']
-    return activity
+    return render_template("activity.html", act = activity);
 
 @app.route('/wordSearch')
 def word_activity():
