@@ -214,8 +214,7 @@ class DB_Manager:
         '''
         c = self.openDB()
         dict = {'words':[]}
-        command_tupe=(user,)
-        c.execute("SELECT word FROM vocab WHERE username=?", command_tuple)
+        c.execute("SELECT word FROM vocab WHERE user_name='{0}'".format(user))
         dict['words'] = c.fetchall()
         return dict
 
