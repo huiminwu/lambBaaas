@@ -198,7 +198,11 @@ class DB_Manager:
         print("saving word")
         row = (userName, word)
         print(row)
-        self.insertRow('vocab', row)
+        command = "INSERT INTO vocab VALUES ('{0}', '{1}')".format(userName, word)
+        c.execute(command)
+        command = "SELECT * FROM vocab"
+        c.execute(command)
+        print(c.fetchall())
         return True
 
     def getLeaderboard():
@@ -217,7 +221,11 @@ class DB_Manager:
         print("getting list")
         c = self.openDB()
         dict = {'words':[]}
-        c.execute("SELECT word FROM vocab WHERE user_name='{0}'".format(user))
+        command = "SELECT word FROM vocab WHERE user_name='{0}'".format(user)
+        c.execute(command)
+        print(c.fetchall())
+        command = "SELECT word FROM vocab WHERE user_name='{0}'".format(user)
+        c.execute(command)
         dict['words'] = c.fetchall()
         return dict
 

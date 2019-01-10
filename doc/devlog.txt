@@ -14,6 +14,19 @@ pd8
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+huiminW -- 2019-01-10 14:47
+--------------------------------------------------------------
+Tried to fix saveWord but unsuccessful. Program inserts and fetching
+all after insert works but the info isn't "saved"?
+BUGS FOUND:
+ - When you go to typing tab after vocab (either definition or searched words page),
+   you will get the definition of 'typing'
+ - When a word doesn't have a definition, you can still save it. When
+   you try to save it or go back, you get a "Not Found" error
+ - Some words lead to api call errors
+--------------------------------------------------------------
+
+
 raunakC -- 2019-01-09 19:30
 --------------------------------------------------------------
 Renamed search.html to word_search.html to clear up confusion
