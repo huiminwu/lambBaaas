@@ -95,6 +95,6 @@ function myFunction() {
     ended = 1;
   }
   document.getElementById("time").innerHTML = "Time: " + timePassed + " s";
-  document.getElementById("wpm").innerHTML = "Wpmaaa: " + wpm;
+  document.getElementById("wpm").innerHTML = "Wpm: " + wpm;
   document.getElementById("accuracy").innerHTML = "Accuracy: " + accuracy + "%";
 }
