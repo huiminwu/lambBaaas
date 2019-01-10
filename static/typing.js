@@ -1,8 +1,11 @@
+var List = require("collections/list");
 var started = 0;
 var startTime = 0;
 var ended = 0;
 var timePassed = 0;
-var demoText = "O all you host of heaven! O earth! what else?";
+var demoText = document.getElementById("demotext").innerHTML;
+var demoTextSplit = new List();
+var finalText;
 var numWords = 0;
 var wpm = 0;
 var numRight = 0;
@@ -10,17 +13,30 @@ var accuracy = 0;
 //var content = "";
 
 function init() {
-  //document.getElementById("demoText").innerHTML = demoText;
+  console.log(demoText);
   for (var i=0; i<demoText.length; i++){
     if (demoText[i] == " "){
       numWords++;
     }
   }
   console.log("Numwords: "+numWords);
+
+  var lastCut = 0;
+  for (var i=0; i<demoText.length; i++){
+    if (demoText[i] == "\n"){
+      demoTextSplit.add(demoText.substring(lastCut, i));
+      lastCut = i+1;
+    }
+  }
+  finalText = demoTextSplit.toArray();
+  for(var i=0; i<finalText.length; i++){
+    console.log(finalText[i]);
+  }
+
   var ctx = document.getElementById("myCanvas").getContext("2d");
-  ctx.font = "20px Consolas";
+  ctx.font = "20px Courier New";
   ctx.fillStyle = "gray";
-  ctx.fillText(demoText,1,24);
+  ctx.fillText(demoText + "WWwwiiiII",1,24);
 }
 
 function myFunction() {
@@ -58,7 +74,7 @@ function myFunction() {
   //content = x + demoText.substring(x.length,demoText.length);
 
   var ctx = document.getElementById("myCanvas").getContext("2d");
-  ctx.font = "20px Consolas";
+  ctx.font = "20px Courier New";
   ctx.clearRect(0, 0, 1000, 30);
   var width = 1;
   for (var i=0; i<x.length; i++){
@@ -75,7 +91,7 @@ function myFunction() {
         ctx.fillText(x[i],width,24);
       }
     }
-    width+=11;
+    width+=12;
   }
   ctx.fillStyle = "gray";
   ctx.fillText(demoText.substring(x.length,demoText.length),width,24);

@@ -18,6 +18,11 @@ data.createUsers()
 data.createTyping()
 data.createVocab()
 
+def getText():
+    F = open("data/hamlet.txt","r")
+    text = F.read()
+    return text
+
 def setUser(userName):
     global user
     user = userName
@@ -198,7 +203,10 @@ def typing():
     '''
     Typing page.
     '''
-    return render_template('typing.html', user_name = user, loggedin = "True")
+    return render_template('typing.html',
+                            user_name = user,
+                            loggedin = "True",
+                            text = getText())
 
 if (__name__ == "__main__"):
     app.secret_key = os.urandom(32)

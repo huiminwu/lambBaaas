@@ -8,6 +8,8 @@
 <p style="color: black">Msg: {{ msg }}</p>
 {% endfor %}
 
+<div id="demotext" class="hiddentext" style="display: none;">{{text}}</div>
+
 <p>Type the quote in the textbox and it will appear above.</p>
 
 <canvas id="myCanvas" width="1000" height="30">
@@ -15,7 +17,7 @@ Your browser does not support the HTML5 canvas tag.</canvas>
 
 <br>
 
-<input type="text" id="myInput" maxlength="45" oninput="myFunction()">
+<input type="text" id="myInput" oninput="myFunction()">
 
 <p id="demo"></p>
 <p id="time"></p>
