@@ -113,14 +113,25 @@ def bored_activity():
     '''
     activity = api.get_bored_activity()['activity']
     category = api.get_bored_activity()['type']
-    return render_template("activity.html", act = activity, cat = category);
+    return render_template("activity.html", act = activity, cat = category)
+
+@app.route('/vocab', methods=['POST', 'GET'])
+def vocab():
+    '''
+    Vocab home page.
+    Displays all words, and an option to search for words.
+    '''
+    words = data.getVocabWords(user)
+    print(words)
+    return render_template('vocab.html', user_name = user, loggedin = "True")
+
 
 @app.route('/wordSearch')
 def word_activity():
     '''
     Displays a search query for words.
     '''
-    return render_template("search.html")
+    return render_template("word_search.html")
 
 @app.route('/wordResult', defaults={'word': None})
 @app.route('/wordResult/<word>')
@@ -137,10 +148,10 @@ def search_results(word):
         query = query.strip()
         if query == '':
             flash('Input something valid!')
-            return render_template("search.html")
+            return render_template("word_search.html")
 
     result = api.get_word(query)
-    return render_template('search.html', **result)
+    return render_template('word_search.html', **result)
 
 @app.route('/def/<oldQuery>/<word>')
 def definition(oldQuery, word):
@@ -149,10 +160,24 @@ def definition(oldQuery, word):
     if no defintions exist, user is returned to the previous page.
     '''
     result = api.get_definition(word)
+    # save oldQuery in the result as well
+    result['oldQuery'] = oldQuery
     if result == {}:
         flash('No definitions found!')
         return redirect(url_for('search_results', word = oldQuery))
     return render_template('definitions.html', **result)
+
+@app.route('/saveWord', methods = ['POST'])
+def saveWord():
+    '''
+    Saves the input word to the DB. POST-only method.
+    Redirects back to the old
+    '''
+    oldQuery = request.form['oldQuery']
+    word = request.form['word']
+    #print(oldQuery,word)
+    data.saveWord(user, word)
+    return redirect(url_for('definition', oldQuery = oldQuery, word = word))
 
 # @app.route('/return')
 # def ret():
@@ -171,13 +196,6 @@ def typing():
     Typing page.
     '''
     return render_template('typing.html', user_name = user, loggedin = "True")
-
-@app.route('/vocab', methods=['POST', 'GET'])
-def vocab():
-    '''
-    Vocabulary page.
-    '''
-    return render_template('vocab.html', user_name = user, loggedin = "True")
 
 if (__name__ == "__main__"):
     app.secret_key = os.urandom(32)

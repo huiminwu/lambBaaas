@@ -13,6 +13,16 @@ pd8
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+raunakC -- 2019-01-09 19:30
+--------------------------------------------------------------
+Renamed search.html to word_search.html to clear up confusion
+Linked html files to rest of template framework
+Fleshed out the vocab endpoint
+Added requirements.txt as per tbm's request
+BUG: getWordSearch() in db.py is nonfunctional — informed Hui Min about it
+--------------------------------------------------------------
+
 huiminW -- 2019-01-09 17:39
 --------------------------------------------------------------
 Edit the frontend of activities
