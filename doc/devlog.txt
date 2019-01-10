@@ -14,6 +14,15 @@ pd8
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+raunakC -- 2019-01-10 19:00
+--------------------------------------------------------------
+Added lambBaaas.db to .gitignore
+Fixed issue with definition of typing appearing
+Properly handled words not having definitions
+API calls should be ok now
+Unsuccessfully tried to resolve the database issue
+--------------------------------------------------------------
+
 antonD -- 2019-01-09 15:39
 --------------------------------------------------------------
 Worked on adding multiple-line texts to the typing instructor.

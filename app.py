@@ -154,6 +154,7 @@ def search_results(word):
         if query == '':
             flash('Input something valid!')
             return render_template("word_search.html")
+        query = query.replace(' ', '%20')
 
     result = api.get_word(query)
     return render_template('word_search.html', **result)
@@ -165,14 +166,21 @@ def definition(oldQuery, word):
     returns the definition of the selected word. Employs this through dynamic routing.
     if no defintions exist, user is returned to the previous page.
     '''
-    result = api.get_definition(word)
-    # save oldQuery in the result as well
-    result['oldQuery'] = oldQuery
+    # placeholder for spaces
+    new_word = word.replace(' ','%20')
+    result = api.get_definition(new_word)
+
     if result == {}:
         flash('No definitions found!')
         if oldQuery:
+            # save oldQuery in the result as well
             return redirect(url_for('search_results', word = oldQuery))
         return redirect(url_for('vocab'))
+
+    # add in fine-tune adjustments to the dict
+    result['word'] = word
+    print(word, result)
+    result['oldQuery'] = oldQuery
     return render_template('definitions.html', **result)
 
 @app.route('/saveWord', methods = ['POST'])
@@ -183,20 +191,9 @@ def saveWord():
     '''
     oldQuery = request.form['oldQuery']
     word = request.form['word']
-    #print(oldQuery,word)
     data.saveWord(user, word)
+    flash('Word {} saved!'.format(word))
     return redirect(url_for('definition', oldQuery = oldQuery, word = word))
-
-# @app.route('/return')
-# def ret():
-#     return redirect(url_for('home'))
-
-#@app.route('/activities', methods=['POST', 'GET'])
-#def activities():
-#    '''
-#    Activities page.
-#    '''
-#    return render_template('activity.html', user_name = user, loggedin = "True")
 
 @app.route('/typing', methods=['POST', 'GET'])
 def typing():
