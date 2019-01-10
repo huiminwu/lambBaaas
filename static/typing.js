@@ -1,15 +1,15 @@
-var List = require("collections/list");
 var started = 0;
 var startTime = 0;
 var ended = 0;
 var timePassed = 0;
 var demoText = document.getElementById("demotext").innerHTML;
-var demoTextSplit = new List();
-var finalText;
+var finalText = Array(0);
 var numWords = 0;
 var wpm = 0;
 var numRight = 0;
 var accuracy = 0;
+var line = 0;
+var maxNum = 80;
 //var content = "";
 
 function init() {
@@ -23,20 +23,31 @@ function init() {
 
   var lastCut = 0;
   for (var i=0; i<demoText.length; i++){
-    if (demoText[i] == "\n"){
-      demoTextSplit.add(demoText.substring(lastCut, i));
+    if (i>maxNum*(line+1) && demoText[i] == " "){
+      finalText.push(demoText.substring(lastCut, i));
       lastCut = i+1;
+      line++;
     }
   }
-  finalText = demoTextSplit.toArray();
-  for(var i=0; i<finalText.length; i++){
+  line = 0;
+  if (finalText.length<3){
+    document.getElementById("canvi").innerHTML += '<canvas id="myCanvas" width="1200" height="' + 30 * finalText.length + '"></canvas>';
+  }
+  else{
+    document.getElementById("canvi").innerHTML += '<canvas id="myCanvas" width="1200" height="' + 90 + '"></canvas>';
+  }
+  for(var i=0; i<finalText.length && i<3; i++){
     console.log(finalText[i]);
+    var ctx = document.getElementById("myCanvas").getContext("2d");
+    ctx.font = "20px Courier New";
+    ctx.fillStyle = "gray";
+    ctx.fillText(finalText[i],1,24*(i+1));
   }
 
-  var ctx = document.getElementById("myCanvas").getContext("2d");
+  /*var ctx = document.getElementById("myCanvas").getContext("2d");
   ctx.font = "20px Courier New";
   ctx.fillStyle = "gray";
-  ctx.fillText(demoText + "WWwwiiiII",1,24);
+  ctx.fillText(demoText + "WWwwiiiII",1,24);*/
 }
 
 function myFunction() {
@@ -75,7 +86,7 @@ function myFunction() {
 
   var ctx = document.getElementById("myCanvas").getContext("2d");
   ctx.font = "20px Courier New";
-  ctx.clearRect(0, 0, 1000, 30);
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   var width = 1;
   for (var i=0; i<x.length; i++){
     if (x[i] == demoText[i]){
@@ -94,7 +105,9 @@ function myFunction() {
     width+=12;
   }
   ctx.fillStyle = "gray";
-  ctx.fillText(demoText.substring(x.length,demoText.length),width,24);
+  ctx.fillText(finalText[line].substring(x.length,demoText.length),width,24);
+  ctx.fillText(finalText[line+1],1,24*(2));
+  ctx.fillText(finalText[line+2],1,24*(3));
 
   if (x.length==demoText.length && !ended){
     timePassed = Math.floor((new Date().getTime() / 1000 - startTime) * 100) / 100;
