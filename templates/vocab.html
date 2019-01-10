@@ -1,12 +1,19 @@
 {% extends "mainpage.html" %}
-{% block title %} Vocabulary {% endblock %}
-{% block content %}
+  {% block title %} Vocabulary {% endblock %}
+  {% block content %}
 
-{% set msgs = get_flashed_messages() %}
-{% for msg in msgs %}
-<p style="color: black">Msg: {{ msg }}</p>
-{% endfor %}
+  {% set msgs = get_flashed_messages() %}
+  {% for msg in msgs %}
+    <p style="color: black">Msg: {{ msg }}</p>
+  {% endfor %}
 
-<p>Vocabulary time yeeeeeeeeeeeee</p>
-
+  <p>Here are your vocab words:</p>
+  <p>
+    <ol>
+      {% for word in words %}
+        <a href="/def/{{word}}">{{word}}</a>
+      {% endfor %}
+    </ol>
+  </p>
+  <a href="/wordSearch">Click here to find new words!</a>
 {% endblock %}

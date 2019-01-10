@@ -153,6 +153,7 @@ def search_results(word):
     result = api.get_word(query)
     return render_template('word_search.html', **result)
 
+@app.route('/def/<word>', defaults={'oldQuery': None})
 @app.route('/def/<oldQuery>/<word>')
 def definition(oldQuery, word):
     '''
@@ -164,7 +165,9 @@ def definition(oldQuery, word):
     result['oldQuery'] = oldQuery
     if result == {}:
         flash('No definitions found!')
-        return redirect(url_for('search_results', word = oldQuery))
+        if oldQuery:
+            return redirect(url_for('search_results', word = oldQuery))
+        return redirect(url_for('vocab'))
     return render_template('definitions.html', **result)
 
 @app.route('/saveWord', methods = ['POST'])
