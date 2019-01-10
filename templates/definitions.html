@@ -1,13 +1,20 @@
-Definition(s) of {{word}}: <br>
-<ol>
-  {% for definition in definitions %}
-    <li>{{definition}}</li>
-  {% endfor %}
-</ol>
-<br>
-Would you like to save this word? <br>
-<!-- NOTE: unlinked -->
-<form class="" action="" method="post">
-  <button type="submit" name="yes-button">Yes</button>
-</form>
-<a href="/wordResult/{{word}}">...Or go back</a>
+{% extends "mainpage.html" %}
+{% block title %} Activities {% endblock %}
+
+{% block content %}
+  Definition(s) of {{word}}: <br>
+  <ol>
+    {% for definition in definitions %}
+      <li>{{definition}}</li>
+    {% endfor %}
+  </ol>
+  <br>
+  Would you like to save this word? <br>
+  <!-- NOTE: unlinked -->
+  <form class="" action="/saveWord" method="post">
+    <input type="hidden" name="word" value={{word}}>
+    <input type="hidden" name="oldQuery" value={{oldQuery}}>
+    <button type="submit" name="yes-button">Yes</button>
+  </form>
+  <a href="/wordResult/{{word}}">...Or go back</a>
+{% endblock %}
