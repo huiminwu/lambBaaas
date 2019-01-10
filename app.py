@@ -186,12 +186,12 @@ def saveWord():
 # def ret():
 #     return redirect(url_for('home'))
 
-@app.route('/activities', methods=['POST', 'GET'])
-def activities():
-    '''
-    Activities page.
-    '''
-    return render_template('activity.html', user_name = user, loggedin = "True")
+#@app.route('/activities', methods=['POST', 'GET'])
+#def activities():
+#    '''
+#    Activities page.
+#    '''
+#    return render_template('activity.html', user_name = user, loggedin = "True")
 
 @app.route('/typing', methods=['POST', 'GET'])
 def typing():

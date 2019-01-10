@@ -195,7 +195,7 @@ class DB_Manager:
         SAVES word each user wants to save
         '''
         c = self.openDB()
-        command = "INSERT IN vocab VALUES('{0}', '{1}')".format(userName, word)
+        command = "INSERT INTO vocab VALUES('{0}', '{1}')".format(userName, word)
         c.execute(command)
         return True
 
