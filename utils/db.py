@@ -208,7 +208,7 @@ class DB_Manager:
         c.execute(command)
         return c.fetchall()
 
-    def getVocabWords():
+    def getVocabWords(self, user):
         '''
         RETURNS all of user's vocab's words
         '''
