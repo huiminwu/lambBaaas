@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<html>
-<body onload="init()">
-
-<p>Type the quote in the textbox and it will appear above.</p>
-
-<canvas id="myCanvas" width="1000" height="30">
-Your browser does not support the HTML5 canvas tag.</canvas>
-<br>
-<input type="text" id="myInput" maxlength="45" oninput="myFunction()">
-
-<p id="demo"></p>
-<p id="time"></p>
-<p id="wpm"></p>
-<p id="accuracy"></p>
-
-<script>
 var started = 0;
 var startTime = 0;
 var ended = 0;
@@ -115,7 +98,3 @@ function myFunction() {
   document.getElementById("wpm").innerHTML = "Wpm: " + wpm;
   document.getElementById("accuracy").innerHTML = "Accuracy: " + accuracy + "%";
 }
-</script>
-
-</body>
-</html>

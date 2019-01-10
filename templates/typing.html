@@ -1,5 +1,6 @@
 {% extends "mainpage.html" %}
 {% block title %} Typing {% endblock %}
+{% block bodytag %}<body onload="init()">{% endblock %}
 {% block content %}
 
 {% set msgs = get_flashed_messages() %}
@@ -7,6 +8,19 @@
 <p style="color: black">Msg: {{ msg }}</p>
 {% endfor %}
 
-<p>Typing time yeeeeeeeeeeeee</p>
+<p>Type the quote in the textbox and it will appear above.</p>
+
+<canvas id="myCanvas" width="1000" height="30">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<br>
+
+<input type="text" id="myInput" maxlength="45" oninput="myFunction()">
+
+<p id="demo"></p>
+<p id="time"></p>
+<p id="wpm"></p>
+<p id="accuracy"></p>
+<script src="static/typing.js"></script>
 
 {% endblock %}
