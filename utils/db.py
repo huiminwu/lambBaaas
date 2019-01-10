@@ -195,8 +195,10 @@ class DB_Manager:
         SAVES word each user wants to save
         '''
         c = self.openDB()
-        command = "INSERT INTO vocab VALUES('{0}', '{1}')".format(userName, word)
-        c.execute(command)
+        print("saving word")
+        row = (userName, word)
+        print(row)
+        self.insertRow('vocab', row)
         return True
 
     def getLeaderboard():
@@ -212,6 +214,7 @@ class DB_Manager:
         '''
         RETURNS all of user's vocab's words
         '''
+        print("getting list")
         c = self.openDB()
         dict = {'words':[]}
         c.execute("SELECT word FROM vocab WHERE user_name='{0}'".format(user))
