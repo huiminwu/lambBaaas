@@ -16,11 +16,11 @@ function init() {
       numWords++;
     }
   }
-  content = demoText;
+  console.log("Numwords: "+numWords);
   var ctx = document.getElementById("myCanvas").getContext("2d");
   ctx.font = "20px Consolas";
   ctx.fillStyle = "gray";
-  ctx.fillText(content,1,24);
+  ctx.fillText(demoText,1,24);
 }
 
 function myFunction() {
@@ -32,7 +32,6 @@ function myFunction() {
   }
   if (!started && x.length == 1){
     ended = 0;
-    numWords = 0;
     wpm = 0;
     numRight = 0;
     accuracy = 0;
@@ -84,8 +83,9 @@ function myFunction() {
   if (x.length==demoText.length && !ended){
     timePassed = Math.floor((new Date().getTime() / 1000 - startTime) * 100) / 100;
     console.log(timePassed);
+    console.log(numWords);
     wpm = Math.floor(numWords / (timePassed / 60));
-
+    console.log("wpm: " + wpm);
     for (var i=0; i<demoText.length; i++){
       if (x[i] == demoText[i]){
         numRight++;
@@ -95,6 +95,6 @@ function myFunction() {
     ended = 1;
   }
   document.getElementById("time").innerHTML = "Time: " + timePassed + " s";
-  document.getElementById("wpm").innerHTML = "Wpm: " + wpm;
+  document.getElementById("wpm").innerHTML = "Wpmaaa: " + wpm;
   document.getElementById("accuracy").innerHTML = "Accuracy: " + accuracy + "%";
 }
