@@ -188,6 +188,7 @@ class DB_Manager:
         c.execute(command)
         command = "INSERT IN typing VALUES('{0}', {1}, {2}, {3})".format(userName, wpm, timestamp, difficulty)
         c.execute(command)
+        self.save()
         return True
 
     def saveWord(self, userName, word):
@@ -195,14 +196,13 @@ class DB_Manager:
         SAVES word each user wants to save
         '''
         c = self.openDB()
-        print("saving word")
         row = (userName, word)
-        print(row)
         command = "INSERT INTO vocab VALUES ('{0}', '{1}')".format(userName, word)
         c.execute(command)
         command = "SELECT * FROM vocab"
         c.execute(command)
         print(c.fetchall())
+        self.save()
         return True
 
     def getLeaderboard():
