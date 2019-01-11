@@ -220,12 +220,7 @@ class DB_Manager:
         '''
         print("getting list")
         c = self.openDB()
-        dict = {'words':[]}
         command = "SELECT word FROM vocab WHERE user_name='{0}'".format(user)
         c.execute(command)
-        print(c.fetchall())
-        command = "SELECT word FROM vocab WHERE user_name='{0}'".format(user)
-        c.execute(command)
-        dict['words'] = c.fetchall()
-        return dict
+        return c.fetchall()
 

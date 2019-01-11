@@ -2,11 +2,6 @@
 {% block title %} Activities {% endblock %}
 
 {% block content %}
-  {% set msgs = get_flashed_messages() %}
-  {% for msg in msgs %}
-    <p style="color: blue">Msg: {{ msg }}</p>
-  {% endfor %}
-
   Definition(s) of {{word}}: <br>
   <ol>
     {% for definition in definitions %}

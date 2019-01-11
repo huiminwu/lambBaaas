@@ -3,11 +3,6 @@
 {% block bodytag %}<body onload="init()">{% endblock %}
 {% block content %}
 
-{% set msgs = get_flashed_messages() %}
-{% for msg in msgs %}
-<p style="color: black">Msg: {{ msg }}</p>
-{% endfor %}
-
 <div id="demotext" class="hiddentext" style="display: none;">{{text}}</div>
 
 <p>Type the quote in the textbox and it will appear above.</p>
