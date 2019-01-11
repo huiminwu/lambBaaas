@@ -22,9 +22,13 @@
     </div>
   </div>
 </div>
-
 <br>
-
+{% set msgs = get_flashed_messages() %}
+{% for msg in msgs %}
+<center>
+  <p style="color:black">Msg: {{msg}}</p>
+</center>
+{% endfor %}
 {% block content %}{% endblock %}
 
 {% endblock %}

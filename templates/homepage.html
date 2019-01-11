@@ -16,11 +16,10 @@
 	<div id="loginBox">
           <div class="grid-margin-x grid-padding-y">
             <div class="cell home medium-6">
-              {% set msgs = get_flashed_messages() %}
-              {% for msg in msgs %}
+            {% set msgs = get_flashed_messages() %}
+            {% for msg in msgs %}
               <p style="color: white">Msg: {{ msg }}</p>
-              {% endfor %}
-
+            {% endfor %}
               {% if loggingin %}
                 <ul class="menu">
                   <form action="/auth" method="POST" class="center">
