@@ -14,7 +14,7 @@ var startline = 0;
 //var content = "";
 
 function init() {
-  console.log(demoText);
+  //console.log(demoText);
   for (var i=0; i<demoText.length; i++){
     if (demoText[i] == " "){
       numWords++;
@@ -70,7 +70,8 @@ function myFunction() {
     started = 1;
   }
   x = x.substring(0,demoText.length);
-  startline = Math.floor(x.length/80);
+  startline = -Math.floor(x.length/80);
+  console.log("x.length: " + x.length);
   console.log("Startline: " + startline);
 
   /*var result = "";
@@ -94,18 +95,18 @@ function myFunction() {
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   var width = 5;
   line = 0;
-  for (var i=80*startline; i<x.length; i++){
+  for (var i=0; i<x.length; i++){
     if (x[i] == demoText[i]){
       ctx.fillStyle = "green";
-      ctx.fillText(x[i],width,24*(line+1));
+      ctx.fillText(x[i],width,24*(startline+line+1));
     }
     else{
       ctx.fillStyle = "red";
       if (x[i]==" "){
-        ctx.fillText("_",width,24*(line+1));
+        ctx.fillText("_",width,24*(startline+line+1));
       }
       else{
-        ctx.fillText(x[i],width,24*(line+1));
+        ctx.fillText(x[i],width,24*(startline+line+1));
       }
     }
     width+=12;
@@ -120,9 +121,12 @@ function myFunction() {
   if (line==0){
     start++;
   }
-  ctx.fillText(finalText[line].substring(start,demoText.length),width,24*(line+1));
-  ctx.fillText(finalText[line+1],5,24*(line+2));
-  ctx.fillText(finalText[line+2],5,24*(line+3));
+  for (var i=0; i<finalText.length; i++){
+    if (i!=line){
+      ctx.fillText(finalText[i],5,24*(startline+i));
+    }
+  }
+  ctx.fillText(finalText[line].substring(start,demoText.length),width,24*(startline+1));
 
   if (x.length==demoText.length && !ended){
     timePassed = Math.floor((new Date().getTime() / 1000 - startTime) * 100) / 100;
