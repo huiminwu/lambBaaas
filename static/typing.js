@@ -24,7 +24,7 @@ function init() {
 
   var lastCut = 0;
   for (var i=0; i<demoText.length; i++){
-    if (i>maxNum*(line+1)){
+    if (i==80*(line+1)){
       finalText.push(demoText.substring(lastCut, i));
       lastCut = i;
       line++;
@@ -96,6 +96,10 @@ function myFunction() {
   var width = 5;
   line = 0;
   for (var i=0; i<x.length; i++){
+    if(i==80*(line+1)){
+      line++;
+      width=5;
+    }
     if (x[i] == demoText[i]){
       ctx.fillStyle = "green";
       ctx.fillText(x[i],width,24*(startline+line+1));
@@ -110,10 +114,6 @@ function myFunction() {
       }
     }
     width+=12;
-    if(i==80*(line+1)){
-      line++;
-      width=5;
-    }
   }
   ctx.fillStyle = "gray";
   console.log("Line: " + line);
@@ -122,11 +122,13 @@ function myFunction() {
     start++;
   }
   for (var i=0; i<finalText.length; i++){
-    if (i!=line){
-      ctx.fillText(finalText[i],5,24*(startline+i));
+    //console.log("Startline + i: " + startline + i);
+    if (startline + i != 0){
+      ctx.fillText(finalText[i],5,24*(startline+i+1));
+      //console.log("s");
     }
   }
-  ctx.fillText(finalText[line].substring(start,demoText.length),width,24*(startline+1));
+  ctx.fillText(finalText[line].substring(start,demoText.length),width,24*(startline+line+1));
 
   if (x.length==demoText.length && !ended){
     timePassed = Math.floor((new Date().getTime() / 1000 - startTime) * 100) / 100;
