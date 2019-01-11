@@ -10,6 +10,7 @@ var numRight = 0;
 var accuracy = 0;
 var line = 0;
 var maxNum = 80;
+var startline = 0;
 //var content = "";
 
 function init() {
@@ -23,9 +24,9 @@ function init() {
 
   var lastCut = 0;
   for (var i=0; i<demoText.length; i++){
-    if (i>maxNum*(line+1) && demoText[i] == " "){
+    if (i>maxNum*(line+1)){
       finalText.push(demoText.substring(lastCut, i));
-      lastCut = i+1;
+      lastCut = i;
       line++;
     }
   }
@@ -41,7 +42,7 @@ function init() {
     var ctx = document.getElementById("myCanvas").getContext("2d");
     ctx.font = "20px Courier New";
     ctx.fillStyle = "gray";
-    ctx.fillText(finalText[i],1,24*(i+1));
+    ctx.fillText(finalText[i],5,24*(i+1));
   }
 
   /*var ctx = document.getElementById("myCanvas").getContext("2d");
@@ -49,6 +50,8 @@ function init() {
   ctx.fillStyle = "gray";
   ctx.fillText(demoText + "WWwwiiiII",1,24);*/
 }
+
+
 
 function myFunction() {
   var x = document.getElementById("myInput").value;
@@ -67,6 +70,8 @@ function myFunction() {
     started = 1;
   }
   x = x.substring(0,demoText.length);
+  startline = Math.floor(x.length/80);
+  console.log("Startline: " + startline);
 
   /*var result = "";
   for(var i=0; i<x.length; i++){
@@ -87,27 +92,37 @@ function myFunction() {
   var ctx = document.getElementById("myCanvas").getContext("2d");
   ctx.font = "20px Courier New";
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-  var width = 1;
-  for (var i=0; i<x.length; i++){
+  var width = 5;
+  line = 0;
+  for (var i=80*startline; i<x.length; i++){
     if (x[i] == demoText[i]){
       ctx.fillStyle = "green";
-      ctx.fillText(x[i],width,24);
+      ctx.fillText(x[i],width,24*(line+1));
     }
     else{
       ctx.fillStyle = "red";
       if (x[i]==" "){
-        ctx.fillText("_",width,24);
+        ctx.fillText("_",width,24*(line+1));
       }
       else{
-        ctx.fillText(x[i],width,24);
+        ctx.fillText(x[i],width,24*(line+1));
       }
     }
     width+=12;
+    if(i==80*(line+1)){
+      line++;
+      width=5;
+    }
   }
   ctx.fillStyle = "gray";
-  ctx.fillText(finalText[line].substring(x.length,demoText.length),width,24);
-  ctx.fillText(finalText[line+1],1,24*(2));
-  ctx.fillText(finalText[line+2],1,24*(3));
+  console.log("Line: " + line);
+  var start = x.length-80*(line)-1;
+  if (line==0){
+    start++;
+  }
+  ctx.fillText(finalText[line].substring(start,demoText.length),width,24*(line+1));
+  ctx.fillText(finalText[line+1],5,24*(line+2));
+  ctx.fillText(finalText[line+2],5,24*(line+3));
 
   if (x.length==demoText.length && !ended){
     timePassed = Math.floor((new Date().getTime() / 1000 - startTime) * 100) / 100;
