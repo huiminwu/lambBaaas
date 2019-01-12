@@ -18,7 +18,10 @@ def access_info(URL_STUB, API_KEY = None, **kwargs):
     for key, value in kwargs.items():
         request_object.add_header(key, value)
 
-    response = request.urlopen(request_object)
+    try:
+        response = request.urlopen(request_object)
+    except:
+        return None
     response = response.read()
     info = json.loads(response)
     return info
@@ -66,6 +69,10 @@ def get_word(query):
     - words: a list of all possible words
     '''
     query = query.strip()
+
+    #modify spacing
+    query = query.replace(' ', '+')
+    query = query.replace('%20', '+')
     URL = 'https://api.datamuse.com/sug?max=100&s={}'.format(query)
     data = access_info(URL)
 
@@ -104,6 +111,10 @@ def get_definition(query):
     except:
         return {}
 
+    print(data)
+    if data == None:
+        return {}
+
     # distill down to necessary words
     result = {}
     result['word'] = query
@@ -126,5 +137,7 @@ def get_definition(query):
     return result
 
 if __name__ == '__main__':
+    data = None
     # print(get_word('    ye'))
-    print(get_definition('astroloma%20humifusum'))
+    print(get_definition('Farm Bill'))
+    print(data==None)

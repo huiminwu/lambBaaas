@@ -128,7 +128,7 @@ def vocab():
     '''
     words = data.getVocabWords(user)
     print(words)
-    return render_template('vocab.html', user_name = user, loggedin = "True")
+    return render_template('vocab.html', user_name = user, loggedin = "True", words = words)
 
 
 @app.route('/wordSearch')
@@ -168,6 +168,7 @@ def definition(oldQuery, word):
     '''
     # placeholder for spaces
     new_word = word.replace(' ','%20')
+    new_word = word.replace('+', '%20')
     result = api.get_definition(new_word)
 
     if result == {}:
@@ -187,13 +188,12 @@ def definition(oldQuery, word):
 def saveWord():
     '''
     Saves the input word to the DB. POST-only method.
-    Redirects back to the old
+    Redirects back to the vocab route
     '''
-    oldQuery = request.form['oldQuery']
     word = request.form['word']
     data.saveWord(user, word)
     flash('Word {} saved!'.format(word))
-    return redirect(url_for('definition', oldQuery = oldQuery, word = word))
+    return redirect(url_for('vocab'))
 
 @app.route('/typing', methods=['POST', 'GET'])
 def typing():
