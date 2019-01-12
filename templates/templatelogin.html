@@ -4,11 +4,10 @@
     <link rel="icon" href="../static/logo.png">
     <link rel="stylesheet" type="text/css" href="static/style.css">
     <link rel="stylesheet" type="text/css" href="static/flip.css">
-    <link rel="stylesheet" type="text/css" href="static/btn.css">
     <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
     <style>
     body {
-        background: white;
+        background-image: url("https://www.jlstms.com/data/wallpapers/12/im57701903.jpg");
     }
     .landing {
         border-radius: 1em;
@@ -25,6 +24,12 @@
     p {
         font-size: 120%;
     }
+    #infoBox {
+        background: white;
+        border-radius: 1em;
+        padding: 1em;
+    }
+
     #loginBox {
         background: black;
         border-radius: 1em;
@@ -32,10 +37,7 @@
     }
     </style>
   </head>
-  {% block bodytag %}<body>{% endblock %}
-    <div>
-      {% block body %}You should not be here{% endblock %}
-    </div>
+    {% block body %}You should not be here{% endblock %}
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
   </body>
