@@ -36,6 +36,7 @@ def get_bored_activity():
     result = {}
     result['activity'] = data['activity']
     result['type'] = data['type']
+    result['participants'] = data['participants']
     return result
 
 def get_quote():

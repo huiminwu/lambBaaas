@@ -17,6 +17,7 @@ data = lamb.DB_Manager(DB_FILE)
 data.createUsers()
 data.createTyping()
 data.createVocab()
+data.createActivities()
 
 def getText():
     F = open("data/hamlet.txt","r")
@@ -114,11 +115,45 @@ def main():
 @app.route('/activity')
 def bored_activity():
     '''
-    Boilerplate for bored API.
+    Displays random activity and ones saved for user
     '''
     activity = api.get_bored_activity()['activity']
     category = api.get_bored_activity()['type']
-    return render_template("activity.html", act = activity, cat = category)
+    participant = api.get_bored_activity()['participants']
+    row = data.getActivities(user) #should recieve dict
+    print("ROW: =============")
+    print(row)
+    print("+++++++++++++++")
+
+    return render_template("activity.html", randact = activity,
+                                            randcat = category,
+                                            randpart = participant,
+                                            diction = row
+                                            )
+
+@app.route('/saveAct', methods=['POST'])
+def save_act():
+    '''
+    Saves Activity
+    '''
+    activity = request.form['act']
+    print(activity)
+    category = request.form['cat']
+    part = request.form['part']
+    data.saveAct(user, activity, category, part)
+    flash('{} saved!'.format(activity))
+    return redirect(url_for('bored_activity'))
+
+@app.route('/deleteAct', methods=['POST'])
+def delete_act():
+    '''
+    Deletes Activity
+    '''
+    activity = request.form['act']
+    print(activity)
+    data.deleteAct(user, activity)
+    flash('{} deleted!'.format(activity))
+    return redirect(url_for('bored_activity'))
 
 @app.route('/vocab', methods=['POST', 'GET'])
 def vocab():

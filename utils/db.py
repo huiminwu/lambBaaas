@@ -120,9 +120,16 @@ class DB_Manager:
 
     def createVocab(self):
         '''
-        CREATES TABLE OF VOCAB WORDS AND
+        CREATES TABLE OF VOCAB WORDS
         '''
         self.tableCreator2('vocab', 'user_name text', 'word text')
+        return True
+
+    def createActivities(self):
+        '''
+        CREATES TABLE OF ACTIVITIES
+        '''
+        self.tableCreator4('activities', 'user_name text', 'activity text', 'category text', 'part int')
         return True
 
     def getUsers(self):
@@ -196,12 +203,46 @@ class DB_Manager:
         SAVES word each user wants to save
         '''
         c = self.openDB()
-        row = (userName, word)
         command = "INSERT INTO vocab VALUES ('{0}', '{1}')".format(userName, word)
         c.execute(command)
-        command = "SELECT * FROM vocab"
+        self.save()
+        return True
+
+    def saveAct(self, userName, activity, category, part):
+        '''
+        SAVES activity
+        '''
+        c = self.openDB()
+        command = "INSERT INTO activities VALUES ('{0}', '{1}', '{2}', {3})".format(userName, activity, category, part)
         c.execute(command)
-        print(c.fetchall())
+        self.save()
+        return True
+
+    def getActivities(self, userName):
+        '''
+        RETURNS activities of user
+        '''
+        c = self.openDB()
+        acts = {'activity':[], 'category':[], 'part':[]}
+        c.execute("SELECT activity FROM activities WHERE user_name='{0}' ORDER BY category".format(userName))
+        acts['activity'] = c.fetchall()
+        c.execute("SELECT category FROM activities WHERE user_name='{0}' ORDER BY category".format(userName))
+        acts['category'] = c.fetchall()
+        c.execute("SELECT part FROM activities WHERE user_name='{0}' ORDER BY category".format(userName))
+        acts['part'] = c.fetchall()
+        return acts
+
+    def deleteAct(self, userName, activity):
+        c = self.openDB()
+        command = "DELETE FROM activities WHERE activity='{0}' AND user_name='{1}'".format(activity, userName)
+        c.execute(command)
+        self.save()
+        return True
+
+    def deleteWord(self, userName, word):
+        c = self.openDB()
+        command = "DELETE FROM vocab WHERE word='{0}' AND user_name='{1}'".format(word, userName)
+        c.execute(command)
         self.save()
         return True
 

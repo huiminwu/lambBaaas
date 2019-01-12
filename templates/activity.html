@@ -2,35 +2,57 @@
 {% block title %} Activities {% endblock %}
 {% block content %}
 <center>
-<div class="grid-x grid-padding-y grid-margin-x">
-    <div class="cell medium-6">
-            <div class="flip-card card" ontouchstart="this.classList.toggle('hover');">
-            <div class="flip-card-inner">
-            <div class="flip-card-inner-front">
-              <span>Activity</span>
-            </div>
-            <div class="flip-card-inner-back">
-              <p class="flip-card-inner-back-text">
-                {{act}}
-              </p>
-            </div>
-            </div>
-            </div>
-    </div>
-    <div class="cell medium-6">
-            <div class="flip-card card" ontouchstart="this.classList.toggle('hover');">
-            <div class="flip-card-inner">
-            <div class="flip-card-inner-front">
-                <span>Category</span>
-            </div>
-            <div class="flip-card-inner-back">
-              <p class="flip-card-inner-back-text">
-                {{cat}}
-              </p>
-            </div>
-            </div>
-            </div>
-    </div>
-</div>
+<h4> Random Generated Activity: </h4>
+<table>
+    <thead>
+        <tr>
+            <th> Category </th>
+            <th> Activity </th>
+            <th> # of participants </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> {{randcat}} </td>
+            <td> {{randact}} </td>
+            <td> {{randpart}} </td>
+        </tr>
+    </tbody>
+</table>
+
+<br> Would you like to save this activity? <br>
+<form class="" action="/saveAct" method="post">
+    <input type="hidden" name="cat" value={{randcat}}>
+    <input type="hidden" name="act" value="{{randact}}">
+    <input type="hidden" name="part" value={{randpart}}>
+    <button type="submit" name="yes-button">Yes</button>
+</form>
+<br>
+<h4> Saved Activities </h4>
+<table>
+    <thead>
+        <tr>
+            <th> Category </th>
+            <th> Activity </th>
+            <th> # of participants </th>
+            <th> Done? </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for activities in diction.activity %}
+        <tr>
+            <td> {{diction.category[loop.index0][0]}} </td>
+            <td> {{activities[0]}} </td>
+            <td> {{diction.part[loop.index0][0]}} </td>
+            <td>
+                <form class="" action="/deleteAct" method="post">
+                    <input type="hidden" name="act" value="{{activities[0]}}">
+                    <button type="submit" name="yes-button">Yes</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 </center>
 {% endblock %}
