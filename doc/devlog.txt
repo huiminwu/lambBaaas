@@ -16,6 +16,11 @@ pd8
 
 raunakC -- 2019-01-12 20:10
 --------------------------------------------------------------
+Frontend work on word parts
+--------------------------------------------------------------
+
+raunakC -- 2019-01-12 20:10
+--------------------------------------------------------------
 Added redirecting the user back to the home page if they don't exist anymore after refreshing
 Added deleting words
 --------------------------------------------------------------

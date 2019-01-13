@@ -2,16 +2,15 @@
   {% block title %} Vocabulary {% endblock %}
   {% block content %}
 
-  <p>Here are your vocab words:</p>
+  <p style ="padding-left: 0.75em;">Here are your vocab words:</p>
   <p>
-    <ol>
-      <li>
+    <ul style="padding-left: 2em;">
         {% for word in words %}
-          <a href="/def/{{word[0]}}">{{word[0]}}</a> <a href="/deleteWord/{{word[0]}}" style="color:red;">&times;</a>
+          <li>
+            <a href="/def/{{word[0]}}">{{word[0]}}</a> <a href="/deleteWord/{{word[0]}}" style="color:red;">&times;</a>
+          </li>
         {% endfor %}
-
-      </li>
-    </ol>
+    </ul>
   </p>
-  <a href="/wordSearch">Click here to find new words!</a>
+  <a href="/wordSearch" style ="padding-left: 1em;">Click here to find new words!</a>
 {% endblock %}

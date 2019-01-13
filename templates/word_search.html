@@ -5,9 +5,11 @@
 {% block content %}
 
   {% if words %}
-    Here are all possible words: <br>
-    <a href="{{url_for('word_activity')}}">Or...search for something else</a>
-    <ul>
+    <p style ="padding-left: 0.5em; font-size: 16;">
+      Here are all possible words: <br>
+      <a href="{{url_for('word_activity')}}">Or...search for something else</a>
+    </p>
+    <ul style="padding-left: 2em;">
       {% for word in words %}
       <li>
         <a href="/def/{{query}}/{{word}}">{{ word }}</a>
@@ -15,10 +17,12 @@
       {% endfor %}
     </ul>
   {% else %}
-    Type in a word, any word: <br>
-    <form class="" action="/wordResult" method="get">
+    <p style="padding-left: 1.75em;">
+      Type in a word, any word:
+    </p>
+    <form class="" action="/wordResult" method="get" style="padding-left: 2em; padding-right: 50em;">
       <input type="text" name="query" value="">
-      <button type="submit" name="button">Submit</button>
+      <button type="submit" name="button" class="button">Submit</button>
     </form>
   {% endif %}
 {% endblock %}
