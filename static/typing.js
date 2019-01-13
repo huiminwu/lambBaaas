@@ -14,7 +14,7 @@ var startline = 0;
 
 function init() {
   //console.log(demoText);
-  demoText = demoText.substring(0, demoText.length-1);
+  //demoText = demoText.substring(0, demoText.length-1);
   for (var i=0; i<demoText.length; i++){
     if (demoText[i] == " "){
       numWords++;

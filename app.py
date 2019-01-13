@@ -20,9 +20,10 @@ data.createVocab()
 data.createActivities()
 
 def getText():
-    F = open("data/hamlet.txt","r")
-    text = F.read()
-    return text
+    #F = open("data/hamlet.txt","r")
+    #text = F.read()
+    text = api.get_quote()
+    return text['quote'] + " -" + text['author']
 
 def setUser(userName):
     global user
