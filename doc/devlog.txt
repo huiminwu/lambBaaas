@@ -13,6 +13,16 @@ pd8
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+huiminW -- 2019-01-13 18:15
+--------------------------------------------------------------
+Found bug that if the activity has a quotation mark like, 
+"Study something you're passionate about", there is syntax error
+when this activity is saved/deleted because I use format when 
+passing params. Changed this to command tuples and lots of ?.
+Code is now more secure.
+--------------------------------------------------------------
+
 antonD -- 2019-01-13 17:38
 --------------------------------------------------------------
 Quotes API has been integrated into the typing page.
