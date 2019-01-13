@@ -9,40 +9,39 @@ var wpm = 0;
 var numRight = 0;
 var accuracy = 0;
 var line = 0;
-var maxNum = 80;
 var startline = 0;
 //var content = "";
 
 function init() {
   //console.log(demoText);
+  demoText = demoText.substring(0, demoText.length-1);
   for (var i=0; i<demoText.length; i++){
     if (demoText[i] == " "){
       numWords++;
     }
   }
   console.log("Numwords: "+numWords);
+  console.log("Text length: "+demoText.length);
 
   var lastCut = 0;
   for (var i=0; i<demoText.length; i++){
-    if (i==80*(line+1)){
-      finalText.push(demoText.substring(lastCut, i));
-      lastCut = i;
+    if (demoText[i] == "\n"){
+      demoText[i] = " ";
+    }
+    if (i==80*line){
+      finalText.push(demoText.substring(lastCut, i+80));
+      console.log("FinalText["+line+"]: "+finalText[line]);
+      lastCut = i+80;
       line++;
     }
   }
   line = 0;
-  if (finalText.length<3){
-    document.getElementById("canvi").innerHTML += '<canvas id="myCanvas" width="1200" height="' + 30 * finalText.length + '"></canvas>';
-  }
-  else{
-    document.getElementById("canvi").innerHTML += '<canvas id="myCanvas" width="1200" height="' + 90 + '"></canvas>';
-  }
-  for(var i=0; i<finalText.length && i<3; i++){
+  for(var i=0; i<finalText.length; i++){
     console.log(finalText[i]);
     var ctx = document.getElementById("myCanvas").getContext("2d");
     ctx.font = "20px Courier New";
     ctx.fillStyle = "gray";
-    ctx.fillText(finalText[i],5,24*(i+1));
+    ctx.fillText(finalText[i],5,24*(i+1)-5);
   }
 
   /*var ctx = document.getElementById("myCanvas").getContext("2d");
@@ -70,7 +69,7 @@ function myFunction() {
     started = 1;
   }
   x = x.substring(0,demoText.length);
-  startline = -Math.floor(x.length/80);
+  startline = -Math.floor((x.length-1)/80);
   console.log("x.length: " + x.length);
   console.log("Startline: " + startline);
 
@@ -96,41 +95,45 @@ function myFunction() {
   var width = 5;
   line = 0;
   for (var i=0; i<x.length; i++){
-    if(i==80*(line+1)){
-      line++;
-      width=5;
-    }
     if (x[i] == demoText[i]){
       ctx.fillStyle = "green";
-      ctx.fillText(x[i],width,24*(startline+line+1));
+      ctx.fillText(x[i],width,24*(startline+line+1)-5);
     }
     else{
       ctx.fillStyle = "red";
       if (x[i]==" "){
-        ctx.fillText("_",width,24*(startline+line+1));
+        ctx.fillText("_",width,24*(startline+line+1)-5);
       }
       else{
-        ctx.fillText(x[i],width,24*(startline+line+1));
+        ctx.fillText(x[i],width,24*(startline+line+1)-5);
       }
     }
     width+=12;
+    if(i==80*(line+1)-1){
+      line++;
+      width=5;
+    }
   }
   ctx.fillStyle = "gray";
   console.log("Line: " + line);
-  var start = x.length-80*(line)-1;
-  if (line==0){
+  var start = x.length-80*(line);
+  /*if (line==0){
     start++;
-  }
+  }*/
   for (var i=0; i<finalText.length; i++){
     //console.log("Startline + i: " + startline + i);
     if (startline + i != 0){
-      ctx.fillText(finalText[i],5,24*(startline+i+1));
+      ctx.fillText(finalText[i],5,24*(startline+i+1)-5);
       //console.log("s");
     }
   }
-  ctx.fillText(finalText[line].substring(start,demoText.length),width,24*(startline+line+1));
+  ctx.fillText(finalText[line].substring(start,finalText[line].length),width,24*(startline+line+1)-5);
+
+
 
   if (x.length==demoText.length && !ended){
+    console.log("x.length: " + x.length);
+    console.log("demoText.length: " + demoText.length);
     timePassed = Math.floor((new Date().getTime() / 1000 - startTime) * 100) / 100;
     console.log(timePassed);
     console.log(numWords);
