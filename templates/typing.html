@@ -3,22 +3,29 @@
 {% block bodytag %}<body onload="init()">{% endblock %}
 {% block content %}
 
+<center>
 <div id="demotext" class="hiddentext" style="display: none;">{{text}}</div>
 
 <p>Type the quote in the textbox and it will appear above.</p>
 
-<canvas id="myCanvas" width="1200" height="90"></canvas>
-
+<canvas id="myCanvas" width="980" height="90" style="border:3px solid #000000;"></canvas>
 
 <br>
 
-<input type="text" id="myInput" oninput="myFunction()">
+<div class="medium-6 cell">
+  <input type="text" id="myInput" oninput="myFunction()">
+</div>
 
-<p id="demo"></p>
-<p id="time"></p>
-<p id="wpm"></p>
-<p id="accuracy"></p>
+<div id="finishbox">
+  <div id="typingDisplay" style="display: none;">
+    <h3>Congratulations!</h3>
+    <p id="time"></p>
+    <p id="wpm"></p>
+    <p id="accuracy"></p>
+  </div>
+</div>
 
 <script src="./static/typing.js"></script>
 
+</center>
 {% endblock %}

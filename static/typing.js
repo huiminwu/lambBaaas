@@ -70,6 +70,9 @@ function myFunction() {
   }
   x = x.substring(0,demoText.length);
   startline = -Math.floor((x.length-1)/80);
+  if(x.length==0){
+    startline=0;
+  }
   console.log("x.length: " + x.length);
   console.log("Startline: " + startline);
 
@@ -146,8 +149,9 @@ function myFunction() {
     }
     accuracy = Math.floor((numRight / demoText.length) * 100);
     ended = 1;
+    document.getElementById("finishbox").innerHTML = '<div id="exampleoverlay">'+ document.getElementById("finishbox").innerHTML.substring(0,25) + document.getElementById("finishbox").innerHTML.substring(48,document.getElementById("finishbox").innerHTML.length) + '</div>';
+    document.getElementById("time").innerHTML = "Time: " + timePassed + " s";
+    document.getElementById("wpm").innerHTML = "Wpm: " + wpm;
+    document.getElementById("accuracy").innerHTML = "Accuracy: " + accuracy + "%";
   }
-  document.getElementById("time").innerHTML = "Time: " + timePassed + " s";
-  document.getElementById("wpm").innerHTML = "Wpm: " + wpm;
-  document.getElementById("accuracy").innerHTML = "Accuracy: " + accuracy + "%";
 }
