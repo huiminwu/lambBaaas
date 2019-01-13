@@ -93,12 +93,11 @@ def get_definition(query):
     - word: the query
     - definitions: a list of all possible definitions
     '''
-    # query = query.strip()
-    # file = open('../oxford.txt', 'r').read()
-    # apikey = file.strip()
-    apikey = '93a46d0f3ab03a523095b1f1bfe1f1ee' # sub for now b/c path is inoperative
-    # if apikey == '':
-    #     return 'No API key found'
+    query = query.strip()
+    file = open("api/oxford.txt", 'r').read()
+    apikey = file.strip()
+    if apikey == '':
+        return 'No API key found'
 
     # add headers
     headers = {}
