@@ -2,12 +2,12 @@
 ## Members: Hui Min Wu (PM), Raunak Chowdhury, and Anton Danylenko
 ## Project Name: Git Güd
 ---
-#### Brief Overview 
+### Brief Overview 
 
 This website allows someone to take advantage of the new year to git güd — that is, to expand one’s vocabulary and improve their (touch) typing speed. If they’ve mastered all that, they can git güder by checking out random activities we have on our site and getting more involved in the world around them.
 
 ---
-#### Dependencies
+### Dependencies
 - Virtual environment: helps manage the libraries used in this project without affecting your other projects
 - Python 3: The language in which our python files are coded in
 - Flask: a web framework for Python web applications
@@ -16,7 +16,8 @@ This website allows someone to take advantage of the new year to git güd — th
 - ItsDangerous: installed automatically when installing Flask. Securely signs data to ensure its integrity.
 - Click: installed automatically when installing Flask. Framework for writing command line applications.
 
-#### How to Run
+---
+### How to Run
 1. This project requires python3 so run `python3` in your terminal and you should be prompted this:
 ```
 Python 3.6.5 (default, Apr 1 2018, 05:46:30)
@@ -40,6 +41,16 @@ SSH: `git@github.com:huiminwu/lambBaaas.git`
 6. Change to `lambBaaas/` on your machine and type `python app.py` in your terminal. This should return with a link to our application, running on your localhost.
 
 ---
-#### How to Procure API keys
-In <reporoot>/keys/:
-  there is a placeholder for each API key
+### How to Procure API keys
+  
+#### Oxford API
+1. Select the free plan at https://developer.oxforddictionaries.com/?tag=#plans.
+2. Fill out information and you should recieve the API key.
+3. Place API key in `<reporoot>/keys/oxford.txt`
+
+#### Datamuse API
+None requried!
+#### QuotesOnDesign API
+None requried!
+#### Bored API
+None requried!
