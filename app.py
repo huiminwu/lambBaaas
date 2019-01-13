@@ -97,6 +97,9 @@ def logout():
     '''
     Logs the user out.
     '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
     session.pop(user, None)
     setUser(None)
     return redirect(url_for('home'))
@@ -110,13 +113,16 @@ def main():
         data = lamb.DB_Manager(DB_FILE)
         return redirect(url_for('bored_activity'))
 
-    return render_template("homepage.html")
+    return render_template("homepage.html", loggingin = True)
 
 @app.route('/activity')
 def bored_activity():
     '''
     Displays random activity and ones saved for user
     '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
     activity = api.get_bored_activity()['activity']
     category = api.get_bored_activity()['type']
     participant = api.get_bored_activity()['participants']
@@ -136,6 +142,9 @@ def save_act():
     '''
     Saves Activity
     '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
     activity = request.form['act']
     print(activity)
     category = request.form['cat']
@@ -149,6 +158,9 @@ def delete_act():
     '''
     Deletes Activity
     '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
     activity = request.form['act']
     print(activity)
     data.deleteAct(user, activity)
@@ -161,6 +173,9 @@ def vocab():
     Vocab home page.
     Displays all words, and an option to search for words.
     '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
     words = data.getVocabWords(user)
     print(words)
     return render_template('vocab.html', user_name = user, loggedin = "True", words = words)
@@ -171,6 +186,9 @@ def word_activity():
     '''
     Displays a search query for words.
     '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
     return render_template("word_search.html")
 
 @app.route('/wordResult', defaults={'word': None})
@@ -180,6 +198,9 @@ def search_results(word):
     Returns all entries for the word.
     Has an optional param for returning from the defintions endpoint.
     '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
     if word:
         query = word
     else:
@@ -192,6 +213,8 @@ def search_results(word):
         query = query.replace(' ', '%20')
 
     result = api.get_word(query)
+    if result == None:
+        flash('No suitable words found!')
     return render_template('word_search.html', **result)
 
 @app.route('/def/<word>', defaults={'oldQuery': None})
@@ -201,6 +224,9 @@ def definition(oldQuery, word):
     returns the definition of the selected word. Employs this through dynamic routing.
     if no defintions exist, user is returned to the previous page.
     '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
     # placeholder for spaces
     new_word = word.replace(' ','%20')
     new_word = word.replace('+', '%20')
@@ -225,9 +251,24 @@ def saveWord():
     Saves the input word to the DB. POST-only method.
     Redirects back to the vocab route
     '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
     word = request.form['word']
     data.saveWord(user, word)
     flash('Word {} saved!'.format(word))
+    return redirect(url_for('vocab'))
+
+@app.route('/deleteWord/<word>')
+def deleteWord(word):
+    '''
+    Deletes the word from the database.
+    '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
+    data.deleteWord(user, word)
+    flash('Word deleted!')
     return redirect(url_for('vocab'))
 
 @app.route('/typing', methods=['POST', 'GET'])
@@ -235,6 +276,9 @@ def typing():
     '''
     Typing page.
     '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
     return render_template('typing.html',
                             user_name = user,
                             loggedin = "True",

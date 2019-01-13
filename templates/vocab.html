@@ -5,9 +5,12 @@
   <p>Here are your vocab words:</p>
   <p>
     <ol>
-      {% for word in words %}
-        <a href="/def/{{word[0]}}">{{word[0]}}</a>
-      {% endfor %}
+      <li>
+        {% for word in words %}
+          <a href="/def/{{word[0]}}">{{word[0]}}</a> <a href="/deleteWord/{{word[0]}}" style="color:red;">&times;</a>
+        {% endfor %}
+
+      </li>
     </ol>
   </p>
   <a href="/wordSearch">Click here to find new words!</a>
