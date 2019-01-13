@@ -54,3 +54,6 @@ None requried!
 None requried!
 #### Bored API
 None requried!
+
+---
+<p align="center"> <img src="https://github.com/huiminwu/lambBaaas/blob/master/static/logo.png"></p>
