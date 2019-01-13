@@ -208,9 +208,11 @@ def search_results(word):
         query = request.args['query']
         # checking for common mistakes
         query = query.strip()
-        if query == '':
+        # check for special chars as well
+        if query == '' or any(i in '!@#$%^&*()[]{}\|;\',.<>/\"' for i in query):
             flash('Input something valid!')
             return render_template("word_search.html")
+
         query = query.replace(' ', '%20')
 
     result = api.get_word(query)
