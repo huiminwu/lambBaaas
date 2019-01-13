@@ -124,14 +124,12 @@ def bored_activity():
     if user not in session:
         flash('Please log in to access this page!')
         return redirect(url_for('main'))
-    activity = api.get_bored_activity()['activity']
-    category = api.get_bored_activity()['type']
-    participant = api.get_bored_activity()['participants']
+    result = api.get_bored_activity()
+    print(result)
+    activity = result['activity']
+    category = result['type']
+    participant = result['participants']
     row = data.getActivities(user) #should recieve dict
-    print("ROW: =============")
-    print(row)
-    print("+++++++++++++++")
-
     return render_template("activity.html", randact = activity,
                                             randcat = category,
                                             randpart = participant,
