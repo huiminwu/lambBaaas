@@ -2,7 +2,7 @@
 {% block title %} Activities {% endblock %}
 {% block content %}
 <center>
-<h4> Random Generated Activity: </h4>
+<h4> Randomly Generated Activity: </h4>
 <table>
     <thead>
         <tr>
@@ -20,16 +20,23 @@
     </tbody>
 </table>
 
-<br> Would you like to save this activity? <br>
-<form class="" action="/saveAct" method="post">
-    <input type="hidden" name="cat" value={{randcat}}>
-    <input type="hidden" name="act" value="{{randact}}">
-    <input type="hidden" name="part" value={{randpart}}>
-    <button type="submit" name="yes-button">Yes</button>
-</form>
+<div class="card">
+    <div class="card-divider">
+        <br> Would you like to save this activity? <br>
+    </div>
+    <div class="card-section">
+        <form class="" action="/saveAct" method="post">
+            <input type="hidden" name="cat" value={{randcat}}>
+            <input type="hidden" name="act" value="{{randact}}">
+            <input type="hidden" name="part" value={{randpart}}>
+            <button class="button" type="submit" name="yes-button">Yes</button>
+        </form>
+    </div>
+</div>
+
 <br>
 <h4> Saved Activities </h4>
-<table>
+<table class="hover">
     <thead>
         <tr>
             <th> Category </th>
@@ -47,7 +54,7 @@
             <td>
                 <form class="" action="/deleteAct" method="post">
                     <input type="hidden" name="act" value="{{activities[0]}}">
-                    <button type="submit" name="yes-button">Yes</button>
+                    <button class="button" type="submit" name="yes-button">Yes</button>
                 </form>
             </td>
         </tr>
