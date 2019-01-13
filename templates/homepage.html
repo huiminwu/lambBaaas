@@ -18,7 +18,7 @@
             <div class="cell home medium-6">
             {% set msgs = get_flashed_messages() %}
             {% for msg in msgs %}
-              <p style="color: white">Msg: {{ msg }}</p>
+              <p style="color: white">{{ msg }}</p>
             {% endfor %}
               {% if loggingin %}
                 <ul class="menu">

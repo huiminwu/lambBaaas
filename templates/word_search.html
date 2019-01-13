@@ -3,15 +3,14 @@
 {% block title %} Activities {% endblock %}
 
 {% block content %}
-
   {% if words %}
-    <p style ="padding-left: 0.5em; font-size: 16;">
+    <p align="center" style ="padding-left: 0.5em; font-size: 16;">
       Here are all possible words: <br>
       <a href="{{url_for('word_activity')}}">Or...search for something else</a>
     </p>
     <ul style="padding-left: 2em;">
       {% for word in words %}
-      <li>
+      <li align="center" style="list-style-type: none;">
         <a href="/def/{{query}}/{{word}}">{{ word }}</a>
       </li>
       {% endfor %}

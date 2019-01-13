@@ -19,7 +19,7 @@
         </tr>
     </tbody>
 </table>
-
+<hr>
 <div class="card">
     <div class="card-divider">
         <br> Would you like to save this activity? <br>
@@ -34,15 +34,15 @@
     </div>
 </div>
 
-<br>
-<h4> Saved Activities </h4>
+<hr>
+<h4> To do: </h4>
 <table class="hover">
     <thead>
         <tr>
             <th> Category </th>
             <th> Activity </th>
             <th> # of participants </th>
-            <th> Done? </th>
+            <th> </th>
         </tr>
     </thead>
     <tbody>
@@ -54,7 +54,7 @@
             <td>
                 <form class="" action="/deleteAct" method="post">
                     <input type="hidden" name="act" value="{{activities[0]}}">
-                    <button class="button" type="submit" name="yes-button">Yes</button>
+                    <button class="button" type="submit" name="yes-button">Done</button>
                 </form>
             </td>
         </tr>
