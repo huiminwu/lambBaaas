@@ -14,9 +14,24 @@ pd8
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-raunakC -- 2019-01-13 14:00
+
+huiminW -- 2019-01-14 12:03
 --------------------------------------------------------------
-Idiotproofed search queries
+Remove private api key and put oxford.txt in the gitignore
+--------------------------------------------------------------
+
+antonD -- 2019-01-13 20:07
+--------------------------------------------------------------
+Typing page now has different difficulties.
+--------------------------------------------------------------
+
+huiminW -- 2019-01-13 18:15
+--------------------------------------------------------------
+Found bug that if the activity has a quotation mark like,
+"Study something you're passionate about", there is syntax error
+when this activity is saved/deleted because I use format when
+passing params. Changed this to command tuples and lots of ?.
+Code is now more secure.
 --------------------------------------------------------------
 
 antonD -- 2019-01-13 17:38
@@ -33,6 +48,11 @@ antonD -- 2019-01-13 15:57
 --------------------------------------------------------------
 Fixed errors with line endings.
 Wpm and accuracy now displayed correctly for muli-lined texts.
+--------------------------------------------------------------
+
+raunakC -- 2019-01-13 14:00
+--------------------------------------------------------------
+Idiotproofed search queries
 --------------------------------------------------------------
 
 raunakC -- 2019-01-13 14:00

@@ -1,10 +1,23 @@
 {% extends "mainpage.html" %}
 {% block title %} Typing {% endblock %}
-{% block bodytag %}<body onload="init()">{% endblock %}
 {% block content %}
 
 <center>
 <div id="demotext" class="hiddentext" style="display: none;">{{text}}</div>
+
+<div id="selectDifficulty">
+  <div id="exampleoverlay">
+    <div id="typingDisplay" style="width: 1000px; top: 3%">
+      <h4>Choose Difficulty</h4>
+      <br>
+      <ul class="menu">
+        <li><button class="success button" style="width: 120px;" onclick="selectDif('Easy')">Easy</button></li>
+        <li><button class="warning button" style="width: 120px;" onclick="selectDif('Medium')">Medium</button></li>
+        <li><button class="alert button" style="width: 120px;" onclick="selectDif('Difficult')">Difficult</button></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <p>Type the quote in the textbox and it will appear above.</p>
 
@@ -17,8 +30,9 @@
 </div>
 
 <div id="finishbox">
-  <div id="typingDisplay" style="display: none;">
+  <div id="typingDisplay" style="display: none; width: 500px; top: 20%">
     <h3>Congratulations!</h3>
+    <p id="dif"></p>
     <p id="time"></p>
     <p id="wpm"></p>
     <p id="accuracy"></p>

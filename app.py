@@ -23,7 +23,21 @@ def getText():
     #F = open("data/hamlet.txt","r")
     #text = F.read()
     text = api.get_quote()
-    return text['quote'] + " -" + text['author']
+    result = text['quote'] + " -" + text['author']
+    #flash(result)
+    result = result.replace("&#8211;", '-')
+    result = result.replace("&#8220;", '"')
+    result = result.replace("&#8221;", '"')
+    result = result.replace("&#8216;", "'")
+    result = result.replace("&#8217;", "'")
+    result = result.replace("&#8230;", "...")
+    result = result.replace("&#8206;", "")
+    result = result.replace("&#8232;", "")
+    result = result.replace("&mdash;", "-")
+    result = result.replace("<br />", "")
+    result = result.replace("</p>", "")
+    result = result.replace("<p>", "")
+    return result
 
 def setUser(userName):
     global user
@@ -124,14 +138,12 @@ def bored_activity():
     if user not in session:
         flash('Please log in to access this page!')
         return redirect(url_for('main'))
-    activity = api.get_bored_activity()['activity']
-    category = api.get_bored_activity()['type']
-    participant = api.get_bored_activity()['participants']
+    result = api.get_bored_activity()
+    print(result)
+    activity = result['activity']
+    category = result['type']
+    participant = result['participants']
     row = data.getActivities(user) #should recieve dict
-    print("ROW: =============")
-    print(row)
-    print("+++++++++++++++")
-
     return render_template("activity.html", randact = activity,
                                             randcat = category,
                                             randpart = participant,

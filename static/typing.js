@@ -10,16 +10,32 @@ var numRight = 0;
 var accuracy = 0;
 var line = 0;
 var startline = 0;
+var dif = '';
 //var content = "";
 
-function init() {
+function selectDif(difficulty){
+  dif = difficulty;
+  document.getElementById("selectDifficulty").innerHTML = '<div style="display: none;">' + document.getElementById("selectDifficulty").innerHTML + '</div>';
+  init(difficulty);
+}
+
+function init(difficulty) {
   //console.log(demoText);
   //demoText = demoText.substring(0, demoText.length-1);
+  if (difficulty == 'Easy'){
+    demoText = demoText.toLowerCase();
+    demoText = demoText.replace(/[^a-z ]/g, '');
+  }
+  console.log(demoText);
+  if (difficulty == 'Easy' || difficulty == 'Medium'){
+    demoText = demoText.replace(/[^a-zA-Z0-9 ]/g, '');
+  }
   for (var i=0; i<demoText.length; i++){
     if (demoText[i] == " "){
       numWords++;
     }
   }
+  console.log(demoText);
   console.log("Numwords: "+numWords);
   console.log("Text length: "+demoText.length);
 
@@ -149,7 +165,8 @@ function myFunction() {
     }
     accuracy = Math.floor((numRight / demoText.length) * 100);
     ended = 1;
-    document.getElementById("finishbox").innerHTML = '<div id="exampleoverlay">'+ document.getElementById("finishbox").innerHTML.substring(0,25) + document.getElementById("finishbox").innerHTML.substring(48,document.getElementById("finishbox").innerHTML.length) + '</div>';
+    document.getElementById("finishbox").innerHTML = '<div id="exampleoverlay">'+ document.getElementById("finishbox").innerHTML.substring(0,34) + document.getElementById("finishbox").innerHTML.substring(49,document.getElementById("finishbox").innerHTML.length) + '</div>';
+    document.getElementById("dif").innerHTML = "Difficulty: " + dif;
     document.getElementById("time").innerHTML = "Time: " + timePassed + " s";
     document.getElementById("wpm").innerHTML = "Wpm: " + wpm;
     document.getElementById("accuracy").innerHTML = "Accuracy: " + accuracy + "%";
