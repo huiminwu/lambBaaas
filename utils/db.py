@@ -176,16 +176,6 @@ class DB_Manager:
             return True
         return False
 
-    def getID_fromUser(self, userName):
-        '''
-        RETURNS user_id OF userName
-        '''
-        c = self.openDB()
-        command = "SELECT user_id FROM users WHERE user_name == '{0}'".format(userName)
-        c.execute(command)
-        id = c.fetchone()[0]
-        return id
-
     def saveWPM(self, userName, wpm, timestamp, difficulty):
         '''
         SAVES wpm, timestamp, and difficulty for username
@@ -203,8 +193,8 @@ class DB_Manager:
         SAVES word each user wants to save
         '''
         c = self.openDB()
-        command = "INSERT INTO vocab VALUES ('{0}', '{1}')".format(userName, word)
-        c.execute(command)
+        command_tuple = (userName,word)
+        c.execute("INSERT INTO vocab VALUES (?,?)", command_tuple)
         self.save()
         return True
 
@@ -213,8 +203,8 @@ class DB_Manager:
         SAVES activity
         '''
         c = self.openDB()
-        command = "INSERT INTO activities VALUES ('{0}', '{1}', '{2}', {3})".format(userName, activity, category, part)
-        c.execute(command)
+        command_tuple = (userName,activity,category,part)
+        c.execute("INSERT INTO activities VALUES (?,?,?,?)",command_tuple)
         self.save()
         return True
 
@@ -234,15 +224,15 @@ class DB_Manager:
 
     def deleteAct(self, userName, activity):
         c = self.openDB()
-        command = "DELETE FROM activities WHERE activity='{0}' AND user_name='{1}'".format(activity, userName)
-        c.execute(command)
+        command_tuple = (activity,userName)
+        c.execute("DELETE FROM activities WHERE activity=? AND user_name=?", command_tuple)
         self.save()
         return True
 
     def deleteWord(self, userName, word):
         c = self.openDB()
-        command = "DELETE FROM vocab WHERE word='{0}' AND user_name='{1}'".format(word, userName)
-        c.execute(command)
+        command_tuple=(word, userName)
+        c.execute("DELETE FROM vocab WHERE word=? AND user_name=?", command_tuple)
         self.save()
         return True
 
@@ -261,7 +251,6 @@ class DB_Manager:
         '''
         print("getting list")
         c = self.openDB()
-        command = "SELECT word FROM vocab WHERE user_name='{0}'".format(user)
-        c.execute(command)
+        c.execute("SELECT word FROM vocab WHERE user_name=?", (user))
         return c.fetchall()
 
