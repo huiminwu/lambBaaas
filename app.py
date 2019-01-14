@@ -23,7 +23,21 @@ def getText():
     #F = open("data/hamlet.txt","r")
     #text = F.read()
     text = api.get_quote()
-    return text['quote'] + " -" + text['author']
+    result = text['quote'] + " -" + text['author']
+    #flash(result)
+    result = result.replace("&#8211;", '-')
+    result = result.replace("&#8220;", '"')
+    result = result.replace("&#8221;", '"')
+    result = result.replace("&#8216;", "'")
+    result = result.replace("&#8217;", "'")
+    result = result.replace("&#8230;", "...")
+    result = result.replace("&#8206;", "")
+    result = result.replace("&#8232;", "")
+    result = result.replace("&mdash;", "-")
+    result = result.replace("<br />", "")
+    result = result.replace("</p>", "")
+    result = result.replace("<p>", "")
+    return result
 
 def setUser(userName):
     global user
