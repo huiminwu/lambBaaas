@@ -1,0 +1,49 @@
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.active, .btn:hover {
+    background-color: #3086a8;
+    color: white;
+}
+
+.lg {
+    margin: .75rem 1rem 1rem 0;
+    font-size: 17px;
+}
+
+h4 {
+    color: #4A7287;
+    font-family: 'Annie Use Your Telescope';
+    font-size: 30px;
+    font-weight: bold;
+}
+
+thead {
+    background-color: #96D2EA;
+    font-family: 'Atma';
+    font-size: 20px;
+}
+
+p {
+    font-family: 'Alegreya Sans';
+    font-size: 22px;
+}
+
+ul {
+    font-family: 'Alegreya Sans';
+    font-size: 22px;
+}
+
+
+tr {
+    background-color: #F2F7F9;
+}
+
+.card {
+    background-color: #EFEFEF;
+}
+
