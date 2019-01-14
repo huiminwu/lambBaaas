@@ -1,0 +1,21 @@
+{% extends "mainpage.html" %}
+{% block title %} Typing Results {% endblock %}
+{% block content %}
+
+<center>
+  <div id="exampleoverlay">
+    <div id="typingDisplay" style="display: none; width: 500px; top: 20%">
+      <h3>Congratulations!</h3>
+      <p id="dif"></p>
+      <p id="time"></p>
+      <p id="wpm"></p>
+      <p id="accuracy"></p>
+      <ul class="menu">
+        <li><a href="/typing"><button class="button" style="width: 120px;">Leaderboard</button></a></li>
+        <li><a href="/typing"><button class="button" style="width: 120px;">New Quote</button></a></li>
+      </ul>
+    </div>
+  </div>
+</center>
+
+{% endblock %}

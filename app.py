@@ -299,6 +299,20 @@ def typing():
                             loggedin = "True",
                             text = getText())
 
+@app.route('/typingResults', methods=['POST'])
+def typingResults():
+    '''
+    Display results and update database.
+    '''
+    dif, time, speed, acc = request.form["dif"],request.form["time"], request.form['wpm'], request.form['accuracy']
+    return render_template('results.html',
+                            user_name = user,
+                            loggedin = "True",
+                            difficulty = dif,
+                            timestamp = time,
+                            wpm = speed,
+                            accuracy = acc)
+
 if (__name__ == "__main__"):
     app.secret_key = os.urandom(32)
     app.debug=True

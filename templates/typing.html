@@ -29,7 +29,17 @@
   <input type="text" id="myInput" oninput="myFunction()">
 </div>
 
-<div id="finishbox">
+<div style="display: none;">
+  <form id="resultsForm" action="/typingResults" method="POST" class="center">
+    <input type="text" name="dif" id="dif"></p>
+    <input type="text" name="time" id="time"></p>
+    <input type="text" name="wpm" id="wpm"></p>
+    <input type="text" name="accuracy" id="accuracy"></p>
+    <input type="submit" name="action" value="Submit">
+  </form>
+</div>
+
+<!--<div id="finishbox">
   <div id="typingDisplay" style="display: none; width: 500px; top: 20%">
     <h3>Congratulations!</h3>
     <p id="dif"></p>
@@ -41,7 +51,8 @@
       <li><a href="/typing"><button class="button" style="width: 120px;">New Quote</button></a></li>
     </ul>
   </div>
-</div>
+</div>-->
+
 
 <script src="./static/typing.js"></script>
 
