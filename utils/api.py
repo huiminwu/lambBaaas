@@ -138,6 +138,6 @@ def get_definition(query):
 
 if __name__ == '__main__':
     data = None
-    # print(get_word('    ye'))
-    print(get_definition('Farm Bill'))
-    print(data==None)
+    print(get_word('djkfhnbglrjboierjriorjtotijgoirj'))
+    # print(get_definition('Farm Bill'))
+    # print(data==None)

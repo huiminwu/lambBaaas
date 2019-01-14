@@ -228,7 +228,7 @@ def search_results(word):
         query = query.replace(' ', '%20')
 
     result = api.get_word(query)
-    if result == None:
+    if result['words'] == []:
         flash('No suitable words found!')
     return render_template('word_search.html', **result)
 
