@@ -305,6 +305,7 @@ def typingResults():
     Display results and update database.
     '''
     dif, time, speed, acc = request.form["dif"],request.form["time"], request.form['wpm'], request.form['accuracy']
+    flash(""+ dif + " " + time + " " + speed + " " + acc)
     return render_template('results.html',
                             user_name = user,
                             loggedin = "True",

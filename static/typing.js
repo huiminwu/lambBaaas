@@ -166,6 +166,7 @@ function myFunction() {
     accuracy = Math.floor((numRight / demoText.length) * 100);
     ended = 1;
     //document.getElementById("finishbox").innerHTML = '<div id="exampleoverlay">'+ document.getElementById("finishbox").innerHTML.substring(0,34) + document.getElementById("finishbox").innerHTML.substring(49,document.getElementById("finishbox").innerHTML.length) + '</div>';
+    console.log("Time to log results.");
     document.getElementById("dif").innerHTML = "Difficulty: " + dif;
     document.getElementById("time").innerHTML = "Time: " + timePassed + " s";
     document.getElementById("wpm").innerHTML = "Wpm: " + wpm;
