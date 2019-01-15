@@ -20,7 +20,7 @@ function selectDif(difficulty){
 }
 
 function init(difficulty) {
-  //console.log(demoText);
+  console.log(demoText);
   //demoText = demoText.substring(0, demoText.length-1);
   if (difficulty == 'Easy'){
     demoText = demoText.toLowerCase();

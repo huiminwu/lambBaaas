@@ -2,6 +2,7 @@ import json, urllib, os
 
 from flask import Flask, render_template, flash, request, session, redirect, url_for
 
+from datetime import datetime
 from utils import db as lamb
 from utils import api
 from random import choice
@@ -35,6 +36,8 @@ def getText():
     result = result.replace("&#8206;", "")
     result = result.replace("&#8232;", "")
     result = result.replace("&mdash;", "-")
+    result = result.replace("&lt;strong&gt;", "")
+    result = result.replace("&lt;em&gt;", "")
     result = result.replace("<br />", "")
     result = result.replace("</p>", "")
     result = result.replace("<p>", "")
@@ -315,7 +318,7 @@ def typingResults():
                             user_name = user,
                             loggedin = "True",
                             difficulty = dif,
-                            timestamp = datetime.datetime.fromtimestamp(time/1000.0),
+                            timestamp = datetime.fromtimestamp(int(time)/1000.0),
                             wpm = wpm,
                             accuracy = acc)
 
