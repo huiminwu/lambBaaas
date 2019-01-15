@@ -183,7 +183,7 @@ class DB_Manager:
         c = self.openDB()
         command = "DELETE FROM typing WHERE user_name = '{0}'".format(userName)
         c.execute(command)
-        command = "INSERT IN typing VALUES('{0}', {1}, {2}, {3})".format(userName, wpm, timestamp, difficulty)
+        command = "INSERT INTO typing VALUES('{0}', {1}, {2}, {3})".format(userName, wpm, timestamp, difficulty)
         c.execute(command)
         self.save()
         return True
@@ -253,4 +253,3 @@ class DB_Manager:
         c = self.openDB()
         c.execute("SELECT word FROM vocab WHERE user_name=?", (user))
         return c.fetchall()
-

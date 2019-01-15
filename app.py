@@ -26,6 +26,7 @@ def getText():
     result = text['quote'] + " -" + text['author']
     #flash(result)
     result = result.replace("&#8211;", '-')
+    result = result.replace("&#8212;", '-')
     result = result.replace("&#8220;", '"')
     result = result.replace("&#8221;", '"')
     result = result.replace("&#8216;", "'")
@@ -304,15 +305,29 @@ def typingResults():
     '''
     Display results and update database.
     '''
-    dif, time, speed, acc = request.form["dif"],request.form["time"], request.form['wpm'], request.form['accuracy']
-    flash(""+ dif + " " + time + " " + speed + " " + acc)
+    dif, time, wpm, acc = request.form["dif"],request.form["time"], request.form['wpm'], request.form['accuracy']
+    flash(""+ dif + " " + time + " " + wpm + " " + acc)
+    if (int(acc)>=95):
+        if(not data.isInDB('typing')):
+            data.createTyping()
+        data.saveWPM(user,wpm,time,dif)
     return render_template('results.html',
                             user_name = user,
                             loggedin = "True",
                             difficulty = dif,
-                            timestamp = time,
-                            wpm = speed,
+                            timestamp = datetime.datetime.fromtimestamp(time/1000.0),
+                            wpm = wpm,
                             accuracy = acc)
+
+@app.route('/leaderboard')
+def leaderboard():
+    '''
+    Display leaderboard.
+    '''
+    flash(data.getLeaderboard())
+    return render_template('leaderboard.html',
+                            user_name = user,
+                            loggedin = "True")
 
 if (__name__ == "__main__"):
     app.secret_key = os.urandom(32)

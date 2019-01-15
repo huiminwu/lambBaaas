@@ -151,13 +151,15 @@ function myFunction() {
 
 
   if (x.length==demoText.length && !ended){
-    console.log("x.length: " + x.length);
-    console.log("demoText.length: " + demoText.length);
-    timePassed = Math.floor((new Date().getTime() / 1000 - startTime) * 100) / 100;
-    console.log(timePassed);
-    console.log(numWords);
+    //console.log("x.length: " + x.length);
+    //console.log("demoText.length: " + demoText.length);
+    var endTime = new Date().getTime();
+    var date = new Date(endTime);
+    timePassed = Math.floor((endTime / 1000 - startTime) * 100) / 100;
+    //console.log(timePassed);
+    //console.log(numWords);
     wpm = Math.floor(numWords / (timePassed / 60));
-    console.log("wpm: " + wpm);
+    //console.log("wpm: " + wpm);
     for (var i=0; i<demoText.length; i++){
       if (x[i] == demoText[i]){
         numRight++;
@@ -166,11 +168,11 @@ function myFunction() {
     accuracy = Math.floor((numRight / demoText.length) * 100);
     ended = 1;
     //document.getElementById("finishbox").innerHTML = '<div id="exampleoverlay">'+ document.getElementById("finishbox").innerHTML.substring(0,34) + document.getElementById("finishbox").innerHTML.substring(49,document.getElementById("finishbox").innerHTML.length) + '</div>';
-    console.log("Time to log results.");
-    document.getElementById("dif").innerHTML = "Difficulty: " + dif;
-    document.getElementById("time").innerHTML = "Time: " + timePassed + " s";
-    document.getElementById("wpm").innerHTML = "Wpm: " + wpm;
-    document.getElementById("accuracy").innerHTML = "Accuracy: " + accuracy + "%";
+    //console.log("Time to log results.");
+    document.getElementById("dif").value = dif;
+    document.getElementById("time").value = endTime;
+    document.getElementById("wpm").value = wpm;
+    document.getElementById("accuracy").value = accuracy;
     document.forms["resultsForm"].submit();
   }
 }
