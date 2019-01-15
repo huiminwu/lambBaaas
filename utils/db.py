@@ -183,7 +183,7 @@ class DB_Manager:
         c = self.openDB()
         command = "DELETE FROM typing WHERE user_name = '{0}'".format(userName)
         c.execute(command)
-        command = "INSERT INTO typing VALUES('{0}', {1}, {2}, {3})".format(userName, wpm, timestamp, difficulty)
+        command = "INSERT INTO typing VALUES('{0}', {1}, {2}, '{3}')".format(userName, wpm, timestamp, difficulty)
         c.execute(command)
         self.save()
         return True
@@ -236,7 +236,7 @@ class DB_Manager:
         self.save()
         return True
 
-    def getLeaderboard():
+    def getLeaderboard(self):
         '''
         RETURNS leaderboard of users
         '''
