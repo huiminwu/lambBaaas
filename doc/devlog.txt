@@ -17,6 +17,11 @@ huiminW -- 2019-01-16 18:42
 --------------------------------------------------------------
 Added a refresh button to activity. Also made each word in
 vocab table unique so users can't save a word more than once.
+
+antonD -- 2019-01-16 15:36
+--------------------------------------------------------------
+Fixed leaderboard to display multiple difficulties.
+Need to sort leaderboard by wpm.
 --------------------------------------------------------------
 
 huiminW -- 2019-01-16 10:14

@@ -176,6 +176,20 @@ class DB_Manager:
             return True
         return False
 
+    def getWPM(self, userName, difficulty):
+        '''
+        GETS the current wpm saved for the user in the database.
+        '''
+        c = self.openDB()
+        command_tuple = (userName, difficulty)
+        c.execute("INSERT INTO typing VALUES(?, 0, 0, ?)", command_tuple)
+        c.execute("SELECT wpm FROM typing WHERE (user_name = ? AND difficulty = ?)", command_tuple)
+        currentWPMs = c.fetchall()
+        for wpm in currentWPMs:
+            if (wpm[0]!=0):
+                return wpm[0]
+        return 0
+
     def saveWPM(self, userName, wpm, timestamp, difficulty):
         '''
         SAVES wpm, timestamp, and difficulty for username
