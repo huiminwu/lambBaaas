@@ -122,7 +122,7 @@ class DB_Manager:
         '''
         CREATES TABLE OF VOCAB WORDS
         '''
-        self.tableCreator2('vocab', 'user_name text', 'word text')
+        self.tableCreator2('vocab', 'user_name text', 'word text PRIMARY KEY')
         return True
 
     def createActivities(self):

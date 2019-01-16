@@ -1,4 +1,4 @@
-import json, urllib, os
+import json, urllib, os, sqlite3
 
 from flask import Flask, render_template, flash, request, session, redirect, url_for
 
@@ -170,6 +170,17 @@ def save_act():
     flash('{} saved!'.format(activity))
     return redirect(url_for('bored_activity'))
 
+
+@app.route('/newAct', methods=['POST'])
+def new_act():
+    '''
+    Gives user a new activity
+    '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
+    return redirect(url_for('bored_activity'))
+
 @app.route('/deleteAct', methods=['POST'])
 def delete_act():
     '''
@@ -274,7 +285,11 @@ def saveWord():
         flash('Please log in to access this page!')
         return redirect(url_for('main'))
     word = request.form['word']
-    data.saveWord(user, word)
+    try:
+        data.saveWord(user, word)
+    except sqlite3.IntegrityError as e:
+        flash('This word is already saved!')
+        return redirect(url_for('vocab'));
     flash('Word {} saved!'.format(word))
     return redirect(url_for('vocab'))
 
