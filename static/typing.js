@@ -170,7 +170,7 @@ function myFunction() {
     //document.getElementById("finishbox").innerHTML = '<div id="exampleoverlay">'+ document.getElementById("finishbox").innerHTML.substring(0,34) + document.getElementById("finishbox").innerHTML.substring(49,document.getElementById("finishbox").innerHTML.length) + '</div>';
     //console.log("Time to log results.");
     document.getElementById("dif").value = dif;
-    document.getElementById("time").value = endTime;
+    document.getElementById("time").value = date.toString();
     document.getElementById("wpm").value = wpm;
     document.getElementById("accuracy").value = accuracy;
     document.forms["resultsForm"].submit();

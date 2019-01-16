@@ -19,6 +19,11 @@ Fixed db bugs with difficulty. Used a method where each difficulty
 has a dummy value of 0 wpm cause that should be impossible.
 --------------------------------------------------------------
 
+raunakC -- 2019-01-13 13:10
+--------------------------------------------------------------
+Updated README with API descriptions
+--------------------------------------------------------------
+
 huiminW -- 2019-01-15 01:57
 --------------------------------------------------------------
 Remove unused js file and update design.pdf with new changes.
@@ -27,7 +32,7 @@ Make timestamp be stored as text.
 
 huiminW -- 2019-01-15 01:46
 --------------------------------------------------------------
-Make typing table's difficulty column accept strings. Add self 
+Make typing table's difficulty column accept strings. Add self
 as param in getLeaderboard.
 --------------------------------------------------------------
 

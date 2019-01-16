@@ -314,11 +314,12 @@ def typingResults():
         if(not data.isInDB('typing')):
             data.createTyping()
         data.saveWPM(user,wpm,time,dif)
+    #datetime.fromtimestamp(int(time)/1000.0)
     return render_template('results.html',
                             user_name = user,
                             loggedin = "True",
                             difficulty = dif,
-                            timestamp = datetime.fromtimestamp(int(time)/1000.0),
+                            timestamp = time,
                             wpm = wpm,
                             accuracy = acc)
 
@@ -330,7 +331,8 @@ def leaderboard():
     flash(data.getLeaderboard())
     return render_template('leaderboard.html',
                             user_name = user,
-                            loggedin = "True")
+                            loggedin = "True",
+                            leaderboard = data.getLeaderboard())
 
 if (__name__ == "__main__"):
     app.secret_key = os.urandom(32)

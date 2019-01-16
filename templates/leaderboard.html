@@ -5,6 +5,26 @@
 <center>
   <div id="exampleoverlay">
     <div id="typingDisplay" style="width: 500px; top: 20%">
+      <table>
+          <thead>
+              <tr>
+                  <th> User </th>
+                  <th> Difficulty </th>
+                  <th> WPM </th>
+                  <th> Time Completed </th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for item in leaderboard %}
+              <tr>
+                  <td> {{item[0]}} </td>
+                  <td> {{item[3]}} </td>
+                  <td> {{item[1]}} </td>
+                  <td> {{item[2]}} </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
       <ul class="menu">
         <li><a href="/typing"><button class="button" style="width: 120px;">New Quote</button></a></li>
       </ul>
