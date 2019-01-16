@@ -41,15 +41,16 @@ SSH: `git@github.com:huiminwu/lambBaaas.git`
 6. Change to `lambBaaas/` on your machine and type `python app.py` in your terminal. This should return with a link to our application, running on your localhost.
 
 ---
-### API keys
+### API keys description
 
 API | Description
 ------------ | -------------
-Oxford | Lists all definitions of a word if there are definitions available
-Datamuse | Lists all possible words related to the string query requested.
-QuotesOnDesign | Returns a random quote and the author of that quote.
-Bored | Returns a random activity to do when you're bored.
+[Oxford](https://developer.oxforddictionaries.com/) | Lists all definitions of a word if there are definitions available
+[Datamuse](https://www.datamuse.com/api/) | Lists all possible words related to the string query requested.
+[QuotesOnDesign](https://quotesondesign.com/api-v4-0/) | Returns a random quote and the author of that quote.
+[Bored](https://www.boredapi.com/) | Returns a random activity to do when you're bored.
 
+### API keys procurement
 #### Oxford API
 1. Select the free plan at https://developer.oxforddictionaries.com/?tag=#plans.
 1. Fill out information and you should recieve the API key.
