@@ -313,7 +313,8 @@ def typingResults():
     if (int(acc)>=95):
         if(not data.isInDB('typing')):
             data.createTyping()
-        data.saveWPM(user,wpm,time,dif)
+        if(data.getWPM(user,dif)<wpm):
+            data.saveWPM(user,wpm,time,dif)
     #datetime.fromtimestamp(int(time)/1000.0)
     return render_template('results.html',
                             user_name = user,
