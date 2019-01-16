@@ -309,7 +309,7 @@ def typingResults():
     Display results and update database.
     '''
     dif, time, wpm, acc = request.form["dif"],request.form["time"], request.form['wpm'], request.form['accuracy']
-    flash(""+ dif + " " + time + " " + wpm + " " + acc)
+    #flash(""+ dif + " " + time + " " + wpm + " " + acc)
     if (int(acc)>=95):
         if(not data.isInDB('typing')):
             data.createTyping()
@@ -329,7 +329,7 @@ def leaderboard():
     '''
     Display leaderboard.
     '''
-    flash(data.getLeaderboard())
+    #flash(data.getLeaderboard())
     return render_template('leaderboard.html',
                             user_name = user,
                             loggedin = "True",
