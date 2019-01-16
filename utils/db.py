@@ -181,10 +181,11 @@ class DB_Manager:
         SAVES wpm, timestamp, and difficulty for username
         '''
         c = self.openDB()
-        command = "DELETE FROM typing WHERE user_name = '{0}'".format(userName)
-        c.execute(command)
-        command = "INSERT INTO typing VALUES('{0}', {1}, '{2}', '{3}')".format(userName, wpm, timestamp, difficulty)
-        c.execute(command)
+        command_tuple = (userName,difficulty)
+        c.execute("INSERT INTO typing VALUES(?, 0, 0, ?)", command_tuple)
+        c.execute("DELETE FROM typing WHERE (user_name = ? AND difficulty = ?)", command_tuple)
+        command_tuple = (userName, wpm, timestamp, difficulty)
+        c.execute("INSERT INTO typing VALUES(?,?,?,?)", command_tuple)
         self.save()
         return True
 
@@ -241,7 +242,7 @@ class DB_Manager:
         RETURNS leaderboard of users
         '''
         c = self.openDB()
-        command = "SELECT * FROM typing ORDER BY wpm"
+        command = "SELECT * FROM typing WHERE wpm != 0 ORDER BY wpm"
         c.execute(command)
         return c.fetchall()
 
