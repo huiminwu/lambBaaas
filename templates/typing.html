@@ -9,11 +9,16 @@
   <div id="exampleoverlay">
     <div id="typingDisplay" style="width: 1000px; top: 15%">
       <h4>Choose Difficulty</h4>
-      <br>
       <ul class="menu">
         <li><button class="success button" style="width: 120px;" onclick="selectDif('Easy')">Easy</button></li>
         <li><button class="warning button" style="width: 120px;" onclick="selectDif('Medium')">Medium</button></li>
         <li><button class="alert button" style="width: 120px;" onclick="selectDif('Difficult')">Difficult</button></li>
+      </ul>
+      <br>
+      <br>
+      <br>
+      <ul class="menu">
+        <li><a href="/leaderboard"><button class="hollow button" style="width: 120px;">Leaderboard</button></a></li>
       </ul>
     </div>
   </div>
@@ -28,6 +33,13 @@
 <div class="medium-6 cell">
   <input type="text" id="myInput" oninput="myFunction()">
 </div>
+
+<br>
+
+<ul class="menu">
+  <li><a href="/leaderboard"><button class="button" style="width: 120px;">Leaderboard</button></a></li>
+  <li><a href="/typing"><button class="button" style="width: 120px;">New Quote</button></a></li>
+</ul>
 
 <div style="display: none;">
   <form id="resultsForm" action="/typingResults" method="POST" class="center">
