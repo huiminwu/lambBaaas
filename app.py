@@ -92,6 +92,12 @@ def create_account_action():
     '''
     data = lamb.DB_Manager(DB_FILE)
     username, password, password2 = request.form["username_reg"], request.form['password_reg'], request.form['password_check']
+    bad_string = '!@#$%^&*() {|\\}[]?><,./;\'\"=+-_'
+    for char in bad_string:
+        if username.find(char) != -1:
+            flash('Please input a valid username!')
+            return redirect(url_for("wanna_register"))
+
     if len(username.strip()) != 0 and not data.findUser(username):
         if len(password.strip()) != 0:
             # add the account to DB
