@@ -46,4 +46,44 @@ tr {
 .card {
     background-color: #EFEFEF;
 }
-
+body {
+    background: white;
+}
+.landing {
+    border-radius: 1em;
+    padding: 1em;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+h1 {
+    font-size: 5em;
+}
+#loginBox {
+    background: black;
+    border-radius: 1em;
+    padding: 1em;
+}
+#exampleoverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+}
+#typingDisplay {
+    position: relative;
+    background: white;
+    border-color: black;
+    border-radius: 1em;
+    border-style: outset;
+    padding: 1em;
+}
+#leaderboardInsides {
+    height: 100px;
+    overflow-y: auto;
+}
