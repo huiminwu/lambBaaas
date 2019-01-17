@@ -256,7 +256,7 @@ class DB_Manager:
         RETURNS leaderboard of users
         '''
         c = self.openDB()
-        command = "SELECT * FROM typing WHERE wpm != 0 ORDER BY wpm"
+        command = "SELECT * FROM typing WHERE wpm != 0 ORDER BY wpm DESC"
         c.execute(command)
         return c.fetchall()
 

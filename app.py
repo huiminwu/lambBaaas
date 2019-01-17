@@ -329,6 +329,9 @@ def typingResults():
     '''
     Display results and update database.
     '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
     dif, time, wpm, acc = request.form["dif"],request.form["time"], request.form['wpm'], request.form['accuracy']
     #flash(""+ dif + " " + time + " " + wpm + " " + acc)
     if (int(acc)>=95):
@@ -350,6 +353,9 @@ def leaderboard():
     '''
     Display leaderboard.
     '''
+    if user not in session:
+        flash('Please log in to access this page!')
+        return redirect(url_for('main'))
     #flash(data.getLeaderboard())
     return render_template('leaderboard.html',
                             user_name = user,

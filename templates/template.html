@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="static/style.css">
     <link href='https://fonts.googleapis.com/css?family=Annie Use Your Telescope' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Alegreya Sans' rel='stylesheet'> 
+    <link href='https://fonts.googleapis.com/css?family=Alegreya Sans' rel='stylesheet'>
     <style>
     body {
         background: white;
@@ -33,12 +33,12 @@
     }
     #exampleoverlay {
         position: absolute;
-        top: 74;
+        top: 0;
         left: 0;
         height: 100%;
         width: 100%;
         background-color: rgba(0,0,0,0.5);
-        z-index: 10;
+        z-index: 1;
     }
     #typingDisplay {
         position: relative;
@@ -47,6 +47,10 @@
         border-radius: 1em;
         border-style: outset;
         padding: 1em;
+    }
+    #leaderboardInsides {
+        height: 400px;
+        overflow-y: auto;
     }
     </style>
   </head>
