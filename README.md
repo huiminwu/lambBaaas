@@ -7,6 +7,10 @@
 This website allows someone to take advantage of the new year to git güd — that is, to expand one’s vocabulary and improve their (touch) typing speed. If they’ve mastered all that, they can git güder by checking out random activities we have on our site and getting more involved in the world around them.
 
 ---
+### Demo
+[Our video demo can be found here.](https://youtu.be/JANeLlzKdf8)
+
+---
 ### Dependencies
 - Virtual environment: helps manage the libraries used in this project without affecting your other projects
 - Python 3: The language in which our python files are coded in
